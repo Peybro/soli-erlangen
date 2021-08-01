@@ -14,7 +14,7 @@ export default function Layout({ pageTitle, children }) {
       <Helmet defer={false}>
         {pageTitle && <title>{`${pageTitle}`} | Soli-Erlangen</title>}
         {!pageTitle && <title>Soli-Erlangen</title>}
-        
+
         <link
           rel="icon"
           href="https://soli-erlangen.de/img/soli-logo.b799b061.png"
@@ -40,6 +40,34 @@ export default function Layout({ pageTitle, children }) {
             Impressum
           </Link>
         </p>
+        <button
+          class="btn btn-primary"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasBottom"
+        >
+          Diese Seite nutzt Cookies!
+        </button>
+        <div
+          class="offcanvas offcanvas-bottom bg-success"
+          tabindex="-1"
+          id="offcanvasBottom"
+        >
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasBottomLabel">
+              Offcanvas bottom
+            </h5>
+            <button
+              type="button"
+              class="btn-close text-reset"
+              data-bs-dismiss="offcanvas"
+            ></button>
+          </div>
+          <div class="offcanvas-body small">
+            Mit der Nutzung dieser Seite geben Sie sich einverstanden, dass
+            Cookies auf Ihrem Gerät gespeichert werden.
+          </div>
+        </div>
       </footer>
     </div>
   );
