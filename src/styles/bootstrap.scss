@@ -1,4 +1,10 @@
-@import "./../../node_modules/bootstrap/dist/css/bootstrap.css";
+// $theme-colors: (
+//   "success": #28a745,
+// );
+
+// $success: #28a745;
+
+@import "./../../node_modules/bootstrap/scss/bootstrap.scss";
 @import "./../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 
 .layout {
