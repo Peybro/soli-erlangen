@@ -1,7 +1,11 @@
 import * as React from "react";
 
 export default function Impressum() {
-  const [currentLocation, setCurrentLocation] = React.useState("rest");
+  const [currentLocation, setCurrentLocation] = React.useState("");
+
+  React.useEffect(() => {
+    setCurrentLocation(window.location.pathname);
+  }, []);
 
   let kindertanzen = {
     src: "https://www.openstreetmap.org/export/embed.html?bbox=11.021199524402618%2C49.55188973449008%2C11.02419823408127%2C49.55314955612231&amp;layer=mapnik&amp;marker=49.55251964936795%2C11.022698879241943",
@@ -16,13 +20,17 @@ export default function Impressum() {
     <div>
       <div className="mb-1">
         <button
-          className={`btn btn${currentLocation === 'rest' ? '-outline' : ''}-primary`}
+          className={`btn btn${
+            !currentLocation.includes("kindertanzen") ? "-outline" : ""
+          }-primary`}
           onClick={() => setCurrentLocation("kindertanzen")}
         >
           Kindertanzen
         </button>
         <button
-          className={`btn btn${currentLocation === 'kindertanzen' ? '-outline' : ''}-primary`}
+          className={`btn btn${
+            currentLocation.includes("kindertanzen") ? "-outline" : ""
+          }-primary`}
           onClick={() => setCurrentLocation("rest")}
         >
           Rest
@@ -35,13 +43,23 @@ export default function Impressum() {
         scrolling="no"
         marginheight="0"
         marginwidth="0"
-        src={currentLocation === "rest" ? rest.src : kindertanzen.src}
+        src={
+          !currentLocation.includes("kindertanzen")
+            ? rest.src
+            : kindertanzen.src
+        }
         style={{ border: "1px solid black", width: "100%" }}
         title=""
       />
       <br />
       <small>
-        <a href={currentLocation === "rest" ? rest.href : kindertanzen.href}>
+        <a
+          href={
+            !currentLocation.includes("kindertanzen")
+              ? rest.href
+              : kindertanzen.href
+          }
+        >
           Größere Karte anzeigen
         </a>
       </small>

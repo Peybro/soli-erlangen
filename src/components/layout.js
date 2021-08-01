@@ -2,6 +2,7 @@ import * as React from "react";
 import "./../styles/bootstrap.scss";
 import "./../../node_modules/bootstrap/dist/js/bootstrap.bundle";
 import { Link } from "gatsby";
+import Helmet from "react-helmet";
 
 import Navbar from "./navbar";
 import Mininav from "./mininav";
@@ -10,13 +11,23 @@ import Location from "./location";
 export default function Layout({ pageTitle, children }) {
   return (
     <div className="layout">
+      <Helmet defer={false}>
+        {pageTitle && <title>{`${pageTitle}`} | Soli-Erlangen</title>}
+        {!pageTitle && <title>Soli-Erlangen</title>}
+        
+        <link
+          rel="icon"
+          href="https://soli-erlangen.de/img/soli-logo.b799b061.png"
+        />
+      </Helmet>
+
       <header>
         <Navbar />
         <Mininav />
       </header>
 
       <main className="container-fluid">
-        <h3 class="heading">{pageTitle}</h3>
+        {pageTitle && <h3 class="heading">{pageTitle}</h3>}
         {children}
       </main>
 

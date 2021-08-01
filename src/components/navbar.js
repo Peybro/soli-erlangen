@@ -7,13 +7,14 @@ export default function Navbar() {
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           <img
-            src="/static/logo.png"
-            alt="Logo"
+            src="https://soli-erlangen.de/img/soli-logo.b799b061.png"
+            alt="[Logo]"
             width="40"
             className="d-inline-block align-text-top"
           />{" "}
           Soli-Erlangen
         </Link>
+
         <button
           className="navbar-toggler"
           type="button"
