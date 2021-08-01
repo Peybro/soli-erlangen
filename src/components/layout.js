@@ -4,11 +4,29 @@ import "./../../node_modules/bootstrap/dist/js/bootstrap.bundle";
 import { Link } from "gatsby";
 import Helmet from "react-helmet";
 
-import Navbar from "./navbar";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import Cookies from "js-cookie";
+
+import NavbarComponent from "./navbar";
 import Mininav from "./mininav";
 import Location from "./location";
 
 export default function Layout({ pageTitle, children }) {
+  const [showCookie, setShowCookie] = React.useState(true);
+
+  React.useState(() => {
+    if (Cookies.get("cookies_read") === "true") {
+      setShowCookie(false);
+    } else {
+      setShowCookie(true);
+    }
+  }, []);
+
+  function handleCloseCookieAlert() {
+    setShowCookie(false);
+    Cookies.set("cookies_read", "true", { expires: 7 });
+  }
+
   return (
     <div className="layout">
       <Helmet defer={false}>
@@ -22,7 +40,7 @@ export default function Layout({ pageTitle, children }) {
       </Helmet>
 
       <header>
-        <Navbar />
+        <NavbarComponent />
         <Mininav />
       </header>
 
@@ -32,7 +50,6 @@ export default function Layout({ pageTitle, children }) {
       </main>
 
       <footer className="bg-success text-light p-3">
-        Hier findet ihr uns:
         <Location />
         <p className="mt-4 w-100">
           Rad und Kraftfahrerverein Solidarität Erlangen 1903 e. V.
@@ -40,34 +57,19 @@ export default function Layout({ pageTitle, children }) {
             Impressum
           </Link>
         </p>
-        <button
-          class="btn btn-primary"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasBottom"
+        <Offcanvas
+          show={showCookie}
+          placement={"bottom"}
+          onHide={() => handleCloseCookieAlert()}
         >
-          Diese Seite nutzt Cookies!
-        </button>
-        <div
-          class="offcanvas offcanvas-bottom bg-success"
-          tabindex="-1"
-          id="offcanvasBottom"
-        >
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasBottomLabel">
-              Offcanvas bottom
-            </h5>
-            <button
-              type="button"
-              class="btn-close text-reset"
-              data-bs-dismiss="offcanvas"
-            ></button>
-          </div>
-          <div class="offcanvas-body small">
-            Mit der Nutzung dieser Seite geben Sie sich einverstanden, dass
-            Cookies auf Ihrem Gerät gespeichert werden.
-          </div>
-        </div>
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title>Diese Seite nutzt Cookies!</Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            Mit der Nutzung dieser Seite geben Sie sich damit einverstanden,
+            dass Cookies gespeichert werden.
+          </Offcanvas.Body>
+        </Offcanvas>
       </footer>
     </div>
   );

@@ -1,12 +1,33 @@
 import * as React from "react";
+import Carousel from "react-bootstrap/Carousel";
 
 import Layout from "../components/layout";
 import "./../styles/bootstrap.scss";
 
-import Carousel from "./../components/carousel";
 import Trainer from "./../components/trainer";
 
 const IndexPage = () => {
+  let images = [
+    {
+      src: "https://soli-erlangen.de/assets/slideshow/radball_generationen.jpg",
+      alt: "",
+      title: "Radball von Jung bis alt",
+      desc: "",
+    },
+    {
+      src: "https://soli-erlangen.de/assets/slideshow/radball_moritz-und-tobi.jpg",
+      alt: "",
+      title: "Moritz und Tobi",
+      desc: "",
+    },
+    {
+      src: "https://soli-erlangen.de/assets/slideshow/radball_moritz-und-tobi-2.jpg",
+      alt: "",
+      title: "Moritz und Tobi",
+      desc: "",
+    },
+  ];
+
   return (
     <Layout>
       <div className="row g-0">
@@ -34,7 +55,23 @@ const IndexPage = () => {
           />
         </div>
         <div className="col-md order-first order-md-last">
-          <Carousel />
+          <Carousel>
+            {images.map((image, i) => {
+              return (
+                <Carousel.Item>
+                  <img
+                    className="d-block w-100"
+                    src={image.src}
+                    alt={image.alt}
+                  />
+                  <Carousel.Caption>
+                    <h3>{image.title}</h3>
+                    <p>{image.desc}</p>
+                  </Carousel.Caption>
+                </Carousel.Item>
+              );
+            })}
+          </Carousel>
         </div>
       </div>
     </Layout>

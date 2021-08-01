@@ -24,9 +24,9 @@ export default function Impressum() {
     <div>
       <div className="mb-1">
         <button
-          className={`btn btn${
+          className={`me-2 btn btn${
             !currentLocation.includes("kindertanzen") ? "-outline" : ""
-          }-primary`}
+          }-light`}
           onClick={() => setCurrentLocation("kindertanzen")}
         >
           Kindertanzen
@@ -34,7 +34,7 @@ export default function Impressum() {
         <button
           className={`btn btn${
             currentLocation.includes("kindertanzen") ? "-outline" : ""
-          }-primary`}
+          }-light`}
           onClick={() => setCurrentLocation("rest")}
         >
           Rest

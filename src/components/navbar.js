@@ -1,159 +1,112 @@
 import * as React from "react";
 import { Link } from "gatsby";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import Container from "react-bootstrap/Container";
+import NavDropdown from "react-bootstrap/NavDropdown";
 
-export default function Navbar() {
+export default function NavbarComponent() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-success sticky-top">
-      <div className="container-fluid">
+    <Navbar
+      collapseOnSelect
+      expand="lg"
+      bg="success"
+      variant="dark"
+      sticky="top"
+    >
+      <Container fluid>
         <Link className="navbar-brand" to="/">
           <img
             src="https://soli-erlangen.de/img/soli-logo.b799b061.png"
             alt="[Logo]"
-            width="40"
-            className="d-inline-block align-text-top"
+            height="30"
+            className="d-inline-block align-top"
           />{" "}
           Soli-Erlangen
         </Link>
-
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-        >
-          <span className="navbar-toggler-icon" />
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
-                Verein
-              </a>
-              <ul className="dropdown-menu">
-                <li>
-                  <Link
-                    className="dropdown-item"
-                    to="/verein/vorstand"
-                    activeClassName="active"
-                  >
-                    Vorstand & Trainer
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="dropdown-item"
-                    to="/verein/zeitung"
-                    activeClassName="active"
-                  >
-                    Vereinsblatt
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="dropdown-item"
-                    to="/verein/geschichte"
-                    activeClassName="active"
-                  >
-                    Geschichte
-                  </Link>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <Link
-                    className="dropdown-item"
-                    to="https://www.facebook.com/pg/RalfHaeusinger"
-                    activeClassName="active"
-                  >
-                    <i className="bi-facebook" /> Aktuelles
-                  </Link>
-                </li>
-              </ul>
-            </li>
-            <li className="nav-item">
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="ms-auto">
+            <NavDropdown title="Verein">
               <Link
-                className="nav-link"
-                to="/kalender"
+                className="dropdown-item"
+                to="/sportarten/reigen"
                 activeClassName="active"
               >
-                Termine
+                Vorstand & Trainer
               </Link>
-            </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
+              <Link
+                className="dropdown-item"
+                to="/verein/zeitung"
+                activeClassName="active"
               >
-                Unsere Sportarten
+                Vereinsblatt
+              </Link>
+              <Link
+                className="dropdown-item"
+                to="/verein/geschichte"
+                activeClassName="active"
+              >
+                Geschichte
+              </Link>
+              <NavDropdown.Divider />
+              <a
+                className="dropdown-item"
+                href="https://www.facebook.com/pg/RalfHaeusinger"
+              >
+                <i className="bi-facebook" /> Aktuelles
               </a>
-              <ul className="dropdown-menu">
-                <li>
-                  <Link
-                    className="dropdown-item"
-                    to="/sportarten/kunstrad"
-                    activeClassName="active"
-                  >
-                    Kunstrad
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="dropdown-item"
-                    to="/sportarten/reigen"
-                    activeClassName="active"
-                  >
-                    Reigen
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="dropdown-item"
-                    to="/sportarten/radball"
-                    activeClassName="active"
-                  >
-                    Radball
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="dropdown-item"
-                    to="/sportarten/gymnastik"
-                    activeClassName="active"
-                  >
-                    Gymnastik
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="dropdown-item"
-                    to="/sportarten/kinderturnen"
-                    activeClassName="active"
-                  >
-                    Kinderturnen
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="dropdown-item"
-                    to="/sportarten/kindertanzen"
-                    activeClassName="active"
-                  >
-                    Kindertanzen
-                  </Link>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+            </NavDropdown>
+            <Link className="nav-link" to="/kalender" activeClassName="active">
+              Termine
+            </Link>
+            <NavDropdown title="Unsere Sportarten">
+              <Link
+                className="dropdown-item"
+                to="/sportarten/kunstrad"
+                activeClassName="active"
+              >
+                Kunstrad
+              </Link>
+              <Link
+                className="dropdown-item"
+                to="/sportarten/reigen"
+                activeClassName="active"
+              >
+                Reigen
+              </Link>
+              <Link
+                className="dropdown-item"
+                to="/sportarten/radball"
+                activeClassName="active"
+              >
+                Radball
+              </Link>
+              <Link
+                className="dropdown-item"
+                to="/sportarten/gymnastik"
+                activeClassName="active"
+              >
+                Gymnastik
+              </Link>
+              <Link
+                className="dropdown-item"
+                to="/sportarten/kinderturnen"
+                activeClassName="active"
+              >
+                Kinderturnen
+              </Link>
+              <Link
+                className="dropdown-item"
+                to="/sportarten/kindertanzen"
+                activeClassName="active"
+              >
+                Kindertanzen
+              </Link>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }
