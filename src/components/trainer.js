@@ -1,41 +1,44 @@
 import * as React from "react";
 import Accordion from "react-bootstrap/Accordion";
 
-export default function Trainer() {
+export default function Trainer({ open }) {
+  // Check if window is defined (so if in the browser or in node.js).
+  const isBrowser = typeof window !== "undefined";
+
   const trainer = [
     {
       sport: "Kunstrad",
       name: "Anne",
       email: "",
-      telefone: "",
-      mobile: "",
+      telefon: "",
+      mobil: "",
     },
     {
       sport: "Reigen",
       name: "Renate",
       email: "renate.transchel@gmx.de",
-      telefone: "09131 49454 ",
-      mobile: "",
+      telefon: "09131 49454 ",
+      mobil: "",
     },
     {
       sport: "Radball",
       name: "Thomas",
       email: "t.kretschmann@t-online.de",
-      telefone: "09131 482248",
-      mobile: "49017643839664",
+      telefon: "09131 482248",
+      mobil: "49017643839664",
     },
     {
       sport: "Kindertanzen",
       name: "Janice",
       email: "janice.haeusinger93@t-online.de",
-      telefone: "",
-      mobile: "49017632843418",
+      telefon: "",
+      mobil: "49017632843418",
     },
   ];
 
   return (
-    <Accordion>
-      {window.location.pathname === "/" && (
+    <Accordion defaultActiveKey={open}>
+      {isBrowser && window.location.pathname === "/" && (
         <Accordion.Item eventKey="0">
           <Accordion.Header>Allgemeines</Accordion.Header>
           <Accordion.Body>
@@ -63,7 +66,7 @@ export default function Trainer() {
 
       {trainer.map((person, i) => {
         return (
-          <Accordion.Item eventKey={i + 1}>
+          <Accordion.Item eventKey={person.sport.toLowerCase()} key={i}>
             <Accordion.Header>{person.sport}</Accordion.Header>
             <Accordion.Body>
               <h4>{person.name}</h4>
@@ -76,16 +79,16 @@ export default function Trainer() {
                   <i className="bi bi-envelope" />
                 </a>
               )}
-              {person.telefone.length > 0 && (
+              {person.telefon.length > 0 && (
                 <button className="btn btn-outline-primary me-1">
-                  <i className="bi bi-telephone" /> {person.telefone}
+                  <i className="bi bi-telephone" /> {person.telefon}
                 </button>
               )}
-              {person.mobile.length > 0 && (
+              {person.mobil.length > 0 && (
                 <a
                   type="button"
                   className="btn btn-outline-primary"
-                  href={`https://wa.me/${person.mobile}`}
+                  href={`https://wa.me/${person.mobil}`}
                 >
                   <i className="bi bi-whatsapp" />
                 </a>
