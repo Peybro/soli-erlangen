@@ -17,14 +17,14 @@ export default function Trainer({ open }) {
       sport: "Reigen",
       name: "Renate",
       email: "renate.transchel@gmx.de",
-      telefon: "09131 49454 ",
+      telefon: "09131 49454",
       mobil: "",
     },
     {
       sport: "Radball",
       name: "Thomas",
       email: "t.kretschmann@t-online.de",
-      telefon: "09131 482248",
+      telefon: "",
       mobil: "49017643839664",
     },
     {
