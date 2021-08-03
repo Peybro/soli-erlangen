@@ -1,18 +1,16 @@
 import * as React from "react";
-import "../../styles/bootstrap.scss";
-// import "bootstrap/dist/js/bootstrap.bundle";
+import "../styles/bootstrap.scss";
 import { Link } from "gatsby";
 import Helmet from "react-helmet";
 
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Form from "react-bootstrap/Form";
-import Container from "react-bootstrap/Container";
 
 import Cookies from "js-cookie";
 
-import NavbarComponent from "../navbar";
-import Mininav from "../mininav";
-import Location from "../location";
+import NavbarComponent from "../components/navbar";
+import Mininav from "../components/mininav";
+import Location from "../components/location";
 
 export default function Layout({ pageTitle, children, onSettingsChange }) {
   const [showCookieAlert, setShowCookieAlert] = React.useState(true);

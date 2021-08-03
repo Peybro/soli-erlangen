@@ -1,5 +1,5 @@
 import * as React from "react";
-import Layout from "../../components/layouts/layout";
+import Layout from "../../layouts/layout";
 
 import Vorstand from "./../../components/vorstand";
 import Trainer from "./../../components/trainer";

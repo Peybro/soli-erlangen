@@ -3,7 +3,7 @@ import Carousel from "react-bootstrap/Carousel";
 
 import Cookies from "js-cookie";
 
-import Layout from "../components/layouts/layout";
+import Layout from "../layouts/layout";
 import "./../styles/bootstrap.scss";
 
 import Trainer from "./../components/trainer";

@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import Alert from "react-bootstrap/Alert";
-import Trainer from "../trainer";
+import Trainer from "../components/trainer";
 
 export default function SportLayout({ children, times, name }) {
   return (

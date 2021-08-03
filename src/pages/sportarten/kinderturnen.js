@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./../../styles/bootstrap.scss";
-import Layout from "../../components/layouts/layout";
-import SportLayout from "../../components/layouts/sportLayout";
+import Layout from "../../layouts/layout";
+import SportLayout from "../../layouts/sportLayout";
 
 export default function Kinderturnen() {
   const title="Kinderturnen"

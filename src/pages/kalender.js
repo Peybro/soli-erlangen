@@ -1,5 +1,5 @@
 import * as React from "react";
-import Layout from "../components/layouts/layout";
+import Layout from "../layouts/layout";
 import Cookies from "js-cookie";
 import Alert from "react-bootstrap/Alert"
 
