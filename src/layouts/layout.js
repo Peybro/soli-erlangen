@@ -41,6 +41,13 @@ export default function Layout({ pageTitle, children, onSettingsChange }) {
     setShowCookieAlert(false);
   }
 
+  function isFluid() {
+    // Check if window is defined (so if in the browser or in node.js).
+    if (typeof window !== "undefined") {
+      return window.innerWidth > 1400;
+    }
+  }
+
   return (
     <div className="layout">
       <Helmet defer={false}>
@@ -58,7 +65,7 @@ export default function Layout({ pageTitle, children, onSettingsChange }) {
         <Mininav />
       </header>
 
-      <main className="container-fluid mb-2">{children}</main>
+      <main className={`${isFluid() ? "container" : ""} mb-2`}>{children}</main>
 
       <footer className="bg-success text-light p-3">
         <Location
