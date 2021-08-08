@@ -1,0 +1,24 @@
+name: Production
+
+on:
+  push:
+    branches: [ production ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        npm install
+    - name: Build project
+      run: |
+        npm run build
+    - name: Push to Server
+      run: |
+        sftp 'sftp_pipeline@soli-erlangen.de'@ssh.strato.de
+        Rziekf7AfGGyMZb
+        put -pr /public . 
