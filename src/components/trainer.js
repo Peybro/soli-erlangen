@@ -9,28 +9,28 @@ export default function Trainer({ open }) {
     {
       sport: "Kunstrad",
       name: "Anne",
-      email: "",
+      email: "kunstrad@soli-erlangen.de",
       telefon: "",
       mobil: "",
     },
     {
       sport: "Reigen",
       name: "Renate",
-      email: "renate.transchel@gmx.de",
+      email: "reigen@soli-erlangen.de",
       telefon: "09131 49454",
       mobil: "",
     },
     {
       sport: "Radball",
       name: "Thomas",
-      email: "t.kretschmann@t-online.de",
+      email: "radball@soli-erlangen.de",
       telefon: "",
       mobil: "49017643839664",
     },
     {
       sport: "Kindertanzen",
       name: "Janice",
-      email: "janice.haeusinger93@t-online.de",
+      email: "kindertanzen@soli-erlangen.de",
       telefon: "",
       mobil: "49017632843418",
     },
@@ -46,7 +46,7 @@ export default function Trainer({ open }) {
             <a
               type="button"
               className="btn btn-outline-primary me-1"
-              href="mailto:ralf.haeusinger@t-online.de"
+              href="mailto:vorstand@soli-erlangen.de"
             >
               <i className="bi bi-envelope" />
             </a>
