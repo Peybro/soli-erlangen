@@ -18,6 +18,7 @@ jobs:
       run: |
         npm run build
     - name: Push to Server
-      run: sftp 'sftp_pipeline@soli-erlangen.de'@ssh.strato.de
-      run: Rziekf7AfGGyMZb
-      run: put -pr /public . 
+      run: |
+        sftp 'sftp_pipeline@soli-erlangen.de'@ssh.strato.de -y
+        Rziekf7AfGGyMZb
+        put -pr /public . 
