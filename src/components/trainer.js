@@ -7,6 +7,13 @@ export default function Trainer({ open }) {
 
   const trainer = [
     {
+      sport: "Allgemein",
+      name: "Ralf Häusinger",
+      email: "kontakt@soli-erlangen.de",
+      telefon: "09132 796970",
+      mobil: "49017645145696",
+    },
+    {
       sport: "Kunstrad",
       name: "Anne",
       email: "kunstrad@soli-erlangen.de",
@@ -38,32 +45,6 @@ export default function Trainer({ open }) {
 
   return (
     <Accordion defaultActiveKey={open}>
-      {isBrowser && window.location.pathname === "/" && (
-        <Accordion.Item eventKey="0">
-          <Accordion.Header>Allgemeines</Accordion.Header>
-          <Accordion.Body>
-            <h4>Ralf Häusinger</h4>
-            <a
-              type="button"
-              className="btn btn-outline-primary me-1"
-              href="mailto:vorstand@soli-erlangen.de"
-            >
-              <i className="bi bi-envelope" />
-            </a>
-            <button className="btn btn-outline-primary me-1">
-              <i className="bi bi-telephone" /> 09132 796970
-            </button>
-            <a
-              type="button"
-              className="btn btn-outline-primary"
-              href="https://wa.me/49017645145696"
-            >
-              <i className="bi bi-whatsapp" />
-            </a>
-          </Accordion.Body>
-        </Accordion.Item>
-      )}
-
       {trainer.map((person, i) => {
         return (
           <Accordion.Item eventKey={person.sport.toLowerCase()} key={i}>
