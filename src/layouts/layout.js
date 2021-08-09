@@ -41,23 +41,13 @@ export default function Layout({ pageTitle, children, onSettingsChange }) {
     setShowCookieAlert(false);
   }
 
-  function isFluid() {
-    // Check if window is defined (so if in the browser or in node.js).
-    if (typeof window !== "undefined") {
-      return window.innerWidth > 1400;
-    }
-  }
-
   return (
     <div className="layout">
       <Helmet defer={false}>
         {pageTitle && <title>{`${pageTitle}`} | Soli-Erlangen</title>}
         {!pageTitle && <title>Soli-Erlangen</title>}
 
-        <link
-          rel="icon"
-          href="https://soli-erlangen.de/img/soli-logo.b799b061.png"
-        />
+        <link rel="icon" href="https://soli-erlangen.de/assets/logo.png" />
       </Helmet>
 
       <header>
@@ -65,7 +55,7 @@ export default function Layout({ pageTitle, children, onSettingsChange }) {
         <Mininav />
       </header>
 
-      <main className={`${isFluid() ? "container" : ""} mb-2`}>{children}</main>
+      <main className="container mb-2">{children}</main>
 
       <footer className="bg-success text-light p-3">
         <Location

@@ -5,7 +5,7 @@ import Trainer from "../components/trainer";
 
 export default function SportLayout({ children, times, name }) {
   return (
-    <div className="row">
+    <div className="row g-0">
       <div className="col">
         <h2 className="heading">{name}</h2>
         <Alert variant="primary">
