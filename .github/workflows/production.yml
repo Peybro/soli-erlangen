@@ -33,9 +33,9 @@ jobs:
         # uses: wangyucode/sftp-upload-action@24f8bb83383dc39bed201ee5da01475e6c38c568
         uses: wangyucode/sftp-upload-action@v1.1
         with:
-          host: "ssh.strato.de"
+          host: ssh.strato.de
           port: 22
-          username: "soli-erlangen.de"
-          password: "Rziekf7AfGGyMZb"
-          localDir: "/public/*"
-          remoteDir: "/"
+          username: soli-erlangen.de
+          password: Rziekf7AfGGyMZb
+          localDir: /public/*
+          remoteDir: /
