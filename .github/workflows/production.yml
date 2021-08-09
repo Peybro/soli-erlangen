@@ -7,16 +7,11 @@ on:
 jobs:
   deploy_job:
     runs-on: ubuntu-latest
-    name: build&deploy
+    name: build & deploy
     steps:
       # To use this repository's private action, you must check out the repository
       - name: Checkout
         uses: actions/checkout@v2
-
-      # - name: Prepare
-      #   run: |
-      #     sudo apt-get update
-      #     sudo apt-get install rsync
 
       - name: Install Dependencies
         run: npm install
@@ -32,8 +27,3 @@ jobs:
           local_path: public/.
           remote_path: /
           args: "-o ConnectTimeout=5"
-
-      # - name: deploy file to server
-      #   run:
-      #     sshpass -p '${{ secrets.SERVER_PW }}' rsync -r -P -v public/ 'sftp_pipeline@soli-erlangen'@ssh.strato.de:/
-      #     # sshpass -p '${{ secrets.SERVER_PW }}' scp -r public/* 'sftp_pipeline@soli-erlangen.de'@ssh.strato.de:/
