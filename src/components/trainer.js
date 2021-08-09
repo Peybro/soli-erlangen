@@ -9,7 +9,7 @@ export default function Trainer({ open }) {
     {
       sport: "Allgemein",
       name: "Ralf Häusinger",
-      email: "kontakt@soli-erlangen.de",
+      email: "vorstand@soli-erlangen.de",
       telefon: "09132 796970",
       mobil: "49017645145696",
     },
