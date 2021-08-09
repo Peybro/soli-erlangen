@@ -13,10 +13,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Prepare
-        run: |
-          sudo apt-get update
-          sudo apt-get install rsync
+      # - name: Prepare
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install rsync
 
       - name: Install Dependencies
         run: npm install
@@ -26,11 +26,11 @@ jobs:
       - name: deploy file to server
         uses: wlixcc/SFTP-Deploy-Action@v1.0
         with:
-          username: "soli-erlangen.de"
-          server: "ssh.strato.de"
+          username: soli-erlangen.de
+          server: ssh.strato.de
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          local_path: "/public/*"
-          remote_path: "/"
+          local_path: public/.
+          remote_path: /
           args: "-o ConnectTimeout=5"
 
       # - name: deploy file to server
