@@ -18,12 +18,25 @@ jobs:
       - name: Build
         run: npm run build
 
+      # - name: deploy file to server
+      #   uses: wlixcc/SFTP-Deploy-Action@v1.0
+      #   with:
+      #     username: "soli-erlangen.de"
+      #     server: "ssh.strato.de"
+      #     ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     local_path: "/public/*"
+      #     remote_path: "/"
+      #     args: "-o ConnectTimeout=5"
+
       - name: deploy file to server
-        uses: wlixcc/SFTP-Deploy-Action@v1.0
+        # You may pin to the exact commit or the version.
+        # uses: wangyucode/sftp-upload-action@24f8bb83383dc39bed201ee5da01475e6c38c568
+        uses: wangyucode/sftp-upload-action@v1.1
         with:
+          host: "ssh.strato.de"
+          port: # optional, default is 22
           username: "soli-erlangen.de"
-          server: "ssh.strato.de"
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          local_path: "/public/*"
-          remote_path: "/"
-          args: "-o ConnectTimeout=5"
+          password: "Rziekf7AfGGyMZb"
+          localDir: "/public/*"
+          remoteDir: "/"
+          dryRun: # optional
