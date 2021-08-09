@@ -31,4 +31,4 @@ jobs:
       - name: deploy file to server
         run: |
           apt-get install lftp
-          lftp sftp://sftp_pipeline@soli-erlangen.de:Rziekf7AfGGyMZb@ssh.strato.de -e "put -r /public/* /; bye"
+          sudo lftp sftp://sftp_pipeline@soli-erlangen.de:Rziekf7AfGGyMZb@ssh.strato.de -e "put -r /public/* /; bye"
