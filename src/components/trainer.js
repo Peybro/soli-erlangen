@@ -22,7 +22,7 @@ export default function Trainer({ open }) {
     },
     {
       sport: "Radball",
-      name: "Thömas",
+      name: "Thomas",
       email: "radball@soli-erlangen.de",
       telefon: "",
       mobil: "49017643839664",
