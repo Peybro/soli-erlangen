@@ -30,5 +30,6 @@ jobs:
 
       - name: deploy file to server
         run: |
+          sudo apt update
           sudo apt-get install sshpass
-          sshpass -p 'Rziekf7AfGGyMZb' scp -r /public/ 'sftp_pipeline@soli-erlangen.de'@ssh.strato.de:/
+          sshpass -p 'Rziekf7AfGGyMZb' scp -r public/ 'sftp_pipeline@soli-erlangen.de'@ssh.strato.de:/
