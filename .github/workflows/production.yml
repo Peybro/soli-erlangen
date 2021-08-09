@@ -16,22 +16,24 @@ jobs:
       - name: Prepare
         run: |
           sudo apt-get update
-          sudo apt-get install sshpass
+          sudo apt-get install rsync
 
       - name: Install Dependencies
         run: npm install
       - name: Build
         run: npm run build
 
-      # - name: deploy file to server
-      #   uses: wlixcc/SFTP-Deploy-Action@v1.0
-      #   with:
-      #     username: "soli-erlangen.de"
-      #     server: "ssh.strato.de"
-      #     ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-      #     local_path: "/public/*"
-      #     remote_path: "/"
-      #     args: "-o ConnectTimeout=5"
-
       - name: deploy file to server
-        run: sshpass -p '${{ secrets.SERVER_PW }}' scp -r public/* 'sftp_pipeline@soli-erlangen.de'@ssh.strato.de:/
+        uses: wlixcc/SFTP-Deploy-Action@v1.0
+        with:
+          username: "soli-erlangen.de"
+          server: "ssh.strato.de"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          local_path: "/public/*"
+          remote_path: "/"
+          args: "-o ConnectTimeout=5"
+
+      # - name: deploy file to server
+      #   run:
+      #     sshpass -p '${{ secrets.SERVER_PW }}' rsync -r -P -v public/ 'sftp_pipeline@soli-erlangen'@ssh.strato.de:/
+      #     # sshpass -p '${{ secrets.SERVER_PW }}' scp -r public/* 'sftp_pipeline@soli-erlangen.de'@ssh.strato.de:/
