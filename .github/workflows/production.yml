@@ -2,23 +2,28 @@ name: Production
 
 on:
   push:
-    branches: [ production ]
+    branches: [production]
 
 jobs:
-  build:
-
+  deploy_job:
     runs-on: ubuntu-latest
-
+    name: build & deploy
     steps:
-    - uses: actions/checkout@v2
-    - name: Install dependencies
-      run: |
-        npm install
-    - name: Build project
-      run: |
-        npm run build
-    - name: Push to Server
-      run: |
-        sftp 'sftp_pipeline@soli-erlangen.de'@ssh.strato.de
-        Rziekf7AfGGyMZb
-        put -pr /public . 
+      # To use this repository's private action, you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+
+      - name: deploy file to server
+        uses: wlixcc/SFTP-Deploy-Action@v1.0
+        with:
+          username: soli-erlangen.de
+          server: ssh.strato.de
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          local_path: public/.
+          remote_path: /
+          args: "-o ConnectTimeout=5"
