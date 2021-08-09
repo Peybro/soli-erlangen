@@ -30,6 +30,5 @@ jobs:
 
       - name: deploy file to server
         run: |
-          sftp 'sftp_pipeline@soli-erlangen.de'@ssh.strato.de
-          Rziekf7AfGGyMZb
-          put -pr /public .
+          apt install lftp
+          lftp sftp://sftp_pipeline@soli-erlangen.de:Rziekf7AfGGyMZb@ssh.strato.de -e "put /public/*; bye"
