@@ -31,11 +31,25 @@ jobs:
       - name: deploy file to server
         # You may pin to the exact commit or the version.
         # uses: wangyucode/sftp-upload-action@24f8bb83383dc39bed201ee5da01475e6c38c568
-        uses: wangyucode/sftp-upload-action@v1.1
+        uses: Creepios/sftp-action@v1.0.1
         with:
+          # Host to login
           host: ssh.strato.de
-          port: 22
+          # Port to login
+          port: # optional, default is 22
+          # Username to login
           username: soli-erlangen.de
+          # Passwort to login
           password: Rziekf7AfGGyMZb
-          localDir: /public/*
-          remoteDir: /
+          # Local file or directory
+          localPath: /public/*
+          # Remote file or directory path (file or directories will be created)
+          remotePath: /
+          # Path to ssh-agent
+          agent: # optional, default is process.env.SSH_AGENT
+          # Path to key file or directly the key (via secret or paste)
+          privateKey: # optional
+          # Define if private key is a local file or string
+          privateKeyIsFile: # optional, default is false
+          # Define a passphrase for encrypted private keys
+          passphrase: # optional
