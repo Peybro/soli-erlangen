@@ -13,6 +13,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Prepare
+        run: |
+          sudo apt-get update
+          sudo apt-get install sshpass
+
       - name: Install Dependencies
         run: npm install
       - name: Build
@@ -29,7 +34,4 @@ jobs:
       #     args: "-o ConnectTimeout=5"
 
       - name: deploy file to server
-        run: |
-          sudo apt update
-          sudo apt-get install sshpass
-          sshpass -p 'Rziekf7AfGGyMZb' scp -r public/ 'sftp_pipeline@soli-erlangen.de'@ssh.strato.de:/
+        run: sshpass -p '${{ secrets.SERVER_PW }}' scp -r public/ 'sftp_pipeline@soli-erlangen.de'@ssh.strato.de:/
