@@ -24,6 +24,6 @@ jobs:
           username: soli-erlangen.de
           server: ssh.strato.de
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          local_path: public/.
+          local_path: build/.
           remote_path: /
           args: "-o ConnectTimeout=5"
