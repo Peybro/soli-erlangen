@@ -63,8 +63,14 @@ export default function Layout({ pageTitle, children, onSettingsChange }) {
   return (
     <div className="layout">
       <Helmet defer={false}>
+        <meta charSet="utf-8" />
+
         {pageTitle && <title>{`${pageTitle}`} | Soli-Erlangen</title>}
-        {!pageTitle && <title>Soli-Erlangen</title>}
+        {(!pageTitle || pageTitle === "index") && <title>Soli-Erlangen</title>}
+        <meta
+          name="description"
+          content="Herzlich willkommen! Sport von jung bis alt. Bei uns steht vor allem der Spaß im Vordergrund. Schau doch mal vorbei :)"
+        />
 
         <link rel="icon" href="https://soli-erlangen.de/assets/logo.png" />
       </Helmet>

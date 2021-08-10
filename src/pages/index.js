@@ -99,7 +99,7 @@ const IndexPage = () => {
                       alt={image.alt}
                     />
                     <Carousel.Caption>
-                      <h3>{image.title}</h3>
+                      <p className="h3">{image.title}</p>
                       <p>{image.desc}</p>
                     </Carousel.Caption>
                   </Carousel.Item>
