@@ -12,7 +12,12 @@ import NavbarComponent from "../components/navbar";
 import Mininav from "../components/mininav";
 import Location from "../components/location";
 
-export default function Layout({ pageTitle, children, onSettingsChange }) {
+export default function Layout({
+  pageTitle,
+  description,
+  children,
+  onSettingsChange,
+}) {
   const [showCookieAlert, setShowCookieAlert] = React.useState(true);
   const [settings, setSettings] = React.useState({
     gcal: false,
@@ -69,7 +74,11 @@ export default function Layout({ pageTitle, children, onSettingsChange }) {
         {(!pageTitle || pageTitle === "index") && <title>Soli-Erlangen</title>}
         <meta
           name="description"
-          content="Herzlich willkommen! Sport von jung bis alt. Bei uns steht vor allem der Spaß im Vordergrund. Schau doch mal vorbei :)"
+          content={
+            description
+              ? description
+              : "Herzlich willkommen! Sport von jung bis alt. Bei uns steht vor allem der Spaß im Vordergrund. Schau doch mal vorbei :)"
+          }
         />
 
         <link rel="icon" href="https://soli-erlangen.de/assets/logo.png" />
