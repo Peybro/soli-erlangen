@@ -73,7 +73,9 @@ const IndexPage = () => {
                   <i className="bi-facebook" />
                 </a>
               </div>
-              <Trainer />
+              <Trainer
+              // open={"allgemein"}
+              />
             </div>
             {showCalendar && (
               <iframe

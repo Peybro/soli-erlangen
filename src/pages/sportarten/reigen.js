@@ -4,12 +4,12 @@ import Layout from "../../layouts/layout";
 import SportLayout from "../../layouts/sportLayout";
 
 export default function Reigen() {
-  const title="Reigen"
+  const title = "Reigen";
 
   return (
     <Layout pageTitle={title}>
       <SportLayout
-        name={title}
+        title={title}
         times={[
           "Donnerstag: 16:00 - 17:00 Uhr (Schüler / Jugend)",
           "Donnerstag: 17:00 - 18:00 Uhr (Jugend)",

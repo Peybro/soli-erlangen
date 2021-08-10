@@ -4,11 +4,11 @@ import Layout from "../../layouts/layout";
 import SportLayout from "../../layouts/sportLayout";
 
 export default function Kinderturnen() {
-  const title="Kinderturnen"
+  const title = "Kinderturnen";
 
   return (
     <Layout pageTitle={title}>
-      <SportLayout name={title} times={["Dienstag: 17:00 - 18:00 Uhr"]}>
+      <SportLayout title={title} times={["Dienstag: 17:00 - 18:00 Uhr"]}>
         <p>
           Durch Umsetzung bestimmter Handlungsprinzipien soll ein langfristiger
           Wechsel vom Mitmachen und Mitspielen zum selbstbestimmten Handeln

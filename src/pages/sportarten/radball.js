@@ -4,12 +4,12 @@ import Layout from "../../layouts/layout";
 import SportLayout from "../../layouts/sportLayout";
 
 export default function Radball() {
-  const title ="Radball"
+  const title = "Radball";
 
   return (
     <Layout pageTitle={title}>
       <SportLayout
-        name={title}
+        title={title}
         times={[
           "Donnerstag: 19:30 - 22:00 Uhr",
           "Freitag: 16:30 - 18:00 Uhr (Kinder)",
