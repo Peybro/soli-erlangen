@@ -36,9 +36,11 @@ export default function Zeitung() {
                   </h2>
                   <iframe
                     src={`${setting.link}${year}_1.pdf`}
+                    className="d-none d-md-block mb-1"
                     loading="lazy"
                     width="100%"
                     height="300px"
+                    title={`${setting.link}${year}_1`}
                   />
                   <a
                     type="button"
@@ -57,9 +59,11 @@ export default function Zeitung() {
                     </h2>
                     <iframe
                       src={`${setting.link}${year}_2.pdf`}
+                      className="d-none d-md-block mb-1"
                       loading="lazy"
                       width="100%"
                       height="300px"
+                      title={`${setting.link}${year}_2`}
                     />
                     <a
                       type="button"
