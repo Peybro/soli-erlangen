@@ -58,7 +58,7 @@ const IndexPage = () => {
   }
 
   return (
-    <Layout onSettingsChange={() => handleSettingsChange()}>
+    <Layout pageTitle="index" onSettingsChange={() => handleSettingsChange()}>
       <div style={{ maxWidth: "1500px" }}>
         <div className="row g-0">
           <div className="col-md-4 pt-1 px-2">

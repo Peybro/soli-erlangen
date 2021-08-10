@@ -47,7 +47,7 @@ export default function Vorstand() {
     },
   ];
   return (
-    <Accordion defaultActiveKey="0">
+    <Accordion defaultActiveKey="0" className="me-0 me-md-2">
       {vostand.map((person, i) => (
         <Accordion.Item eventKey={i}>
           <Accordion.Header>{person.titel}</Accordion.Header>
