@@ -22,8 +22,9 @@ export default function Layout({ pageTitle, children, onSettingsChange }) {
   });
   const [showCookieInput, setShowCookieInput] = React.useState(false);
   const [saveCookieForDays, setSaveCookieForDays] = React.useState(30);
+  const [isFluid, setIsFluid] = React.useState(false);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     const settingsCookie = Cookies.get("settings");
     if (settingsCookie) {
       setSettings(JSON.parse(settingsCookie));
@@ -32,6 +33,24 @@ export default function Layout({ pageTitle, children, onSettingsChange }) {
       setShowCookieAlert(true);
     }
   }, []);
+
+  React.useEffect(() => {
+    getIsFluid();
+
+    document.addEventListener("resize", getIsFluid());
+    return () => {
+      document.removeEventListener("resize", getIsFluid());
+    };
+  });
+
+  function getIsFluid() {
+    // Check if window is defined (so if in the browser or in node.js).
+    if (typeof window !== "undefined" && window.innerWidth > 1400) {
+      setIsFluid(true);
+    } else {
+      setIsFluid(false);
+    }
+  }
 
   function handleCookieSettings() {
     Cookies.set("settings", JSON.stringify(settings), {
@@ -55,7 +74,7 @@ export default function Layout({ pageTitle, children, onSettingsChange }) {
         <Mininav />
       </header>
 
-      <main className="container-xxl mb-2">{children}</main>
+      <main className={`${isFluid && "container"} mb-2`}>{children}</main>
 
       <footer className="bg-success text-light p-3">
         <Location
