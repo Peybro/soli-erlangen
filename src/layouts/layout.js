@@ -55,7 +55,7 @@ export default function Layout({ pageTitle, children, onSettingsChange }) {
         <Mininav />
       </header>
 
-      <main className="container mb-2">{children}</main>
+      <main className="container-xxl mb-2">{children}</main>
 
       <footer className="bg-success text-light p-3">
         <Location
