@@ -44,7 +44,7 @@ export default function Layout({ pageTitle, children, onSettingsChange }) {
   });
 
   function getIsFluid() {
-    // Check if window is defined (so if in the browser or in node.js).
+    // Check if window is defined (so if in the browser or in node.js)
     if (typeof window !== "undefined" && window.innerWidth > 1400) {
       setIsFluid(true);
     } else {
@@ -74,7 +74,13 @@ export default function Layout({ pageTitle, children, onSettingsChange }) {
         <Mininav />
       </header>
 
-      <main className={`${isFluid && "container"} mb-2`}>{children}</main>
+      <main
+        className={`${
+          isFluid ? "container" : pageTitle !== "index" && "mx-2"
+        } mb-2`}
+      >
+        {children}
+      </main>
 
       <footer className="bg-success text-light p-3">
         <Location
