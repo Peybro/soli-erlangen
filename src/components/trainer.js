@@ -2,9 +2,6 @@ import * as React from "react";
 import Accordion from "react-bootstrap/Accordion";
 
 export default function Trainer({ open }) {
-  // Check if window is defined (so if in the browser or in node.js).
-  const isBrowser = typeof window !== "undefined";
-
   const trainer = [
     {
       sport: "Allgemein",
@@ -61,9 +58,15 @@ export default function Trainer({ open }) {
                 </a>
               )}
               {person.telefon.length > 0 && (
-                <button className="btn btn-outline-primary me-1">
+                <a
+                  type="button"
+                  className="btn btn-outline-primary me-1"
+                  href={`tel:+49${person.telefon
+                    .substr(1, person.telefon.length)
+                    .replace(" ", "")}`}
+                >
                   <i className="bi bi-telephone" /> {person.telefon}
-                </button>
+                </a>
               )}
               {person.mobil.length > 0 && (
                 <a

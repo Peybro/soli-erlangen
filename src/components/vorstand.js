@@ -63,9 +63,15 @@ export default function Vorstand() {
               </a>
             )}
             {person.telefon.length > 0 && (
-              <button className="btn btn-outline-primary me-1">
+              <a
+                type="button"
+                className="btn btn-outline-primary me-1"
+                href={`tel:+49${person.telefon
+                  .substr(1, person.telefon.length)
+                  .replace(" ", "")}`}
+              >
                 <i className="bi bi-telephone" /> {person.telefon}
-              </button>
+              </a>
             )}
             {person.mobil.length > 0 && (
               <a
