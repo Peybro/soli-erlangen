@@ -4,11 +4,11 @@ import Layout from "../../layouts/layout";
 import SportLayout from "../../layouts/sportLayout";
 
 export default function Kindertanzen() {
-  const title = "Kindertanzen"
+  const title = "Kindertanzen";
 
   return (
     <Layout pageTitle={title}>
-      <SportLayout name={title} times={["Montag: 16:30 - 17:30 Uhr"]}>
+      <SportLayout title={title} times={["Montag: 16:30 - 17:30 Uhr"]}>
         <p>
           Bewegung ist unverzichtbar für die Entwicklung von Kindern und sie ist
           Ausdruck von Vitalität, von kindlicher Neugier und Lebensfreude.
