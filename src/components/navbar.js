@@ -12,7 +12,7 @@ export default function NavbarComponent() {
       expand="lg"
       bg="success"
       variant="dark"
-      sticky="top"
+      // sticky="top"
     >
       <Container fluid>
         <Link className="navbar-brand" to="/">

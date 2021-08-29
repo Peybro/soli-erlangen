@@ -3,7 +3,6 @@ import "../styles/bootstrap.scss";
 import { Link } from "gatsby";
 import Helmet from "react-helmet";
 
-import Offcanvas from "react-bootstrap/Offcanvas";
 import Form from "react-bootstrap/Form";
 
 import Cookies from "js-cookie";
@@ -57,11 +56,16 @@ export default function Layout({
     }
   }
 
-  function handleCookieSettings() {
+  function handleCookieSettings(expiresInDays) {
     Cookies.set("settings", JSON.stringify(settings), {
-      expires: saveCookieForDays >= 0 ? parseInt(saveCookieForDays) : 0,
+      expires: expiresInDays
+        ? expiresInDays
+        : saveCookieForDays >= 0
+        ? parseInt(saveCookieForDays)
+        : 0,
     });
-    onSettingsChange();
+    //TODO
+    // onSettingsChange();
     setShowCookieAlert(false);
   }
 
@@ -105,7 +109,7 @@ export default function Layout({
           }
         />
         <hr />
-        <p className="mt-4 w-100">
+        <div className="mt-4 w-100">
           <small>
             Rad und Kraftfahrerverein Solidarität Erlangen 1903 e. V.
           </small>
@@ -121,100 +125,125 @@ export default function Layout({
               Einstellungen
             </span>
           </div>
-        </p>
-        <Offcanvas
-          show={showCookieAlert}
-          placement={"bottom"}
-          scroll={true}
-          // onHide={() => handleCloseCookieAlert()}
+        </div>
+        <div
+          id="banner-wrapper"
+          style={{
+            display: "block",
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            zIndex: 999,
+            display: showCookieAlert ? "block" : "none",
+          }}
         >
-          <Offcanvas.Header>
-            <Offcanvas.Title>
+          <div
+            id="cookie-banner"
+            className="bg-light text-dark"
+            style={{
+              position: "fixed",
+              bottom: 0,
+              left: 0,
+              width: "100vw",
+              padding: "20px",
+            }}
+          >
+            <p className="h4">
               Diese Seite nutzt Cookies!{" "}
               <small className="text-muted">
                 (... wenn du sie nicht aus lässt 😉)
               </small>
-            </Offcanvas.Title>
-          </Offcanvas.Header>
-          <Offcanvas.Body>
-            <img
-              className="d-none d-md-block"
-              style={{
-                width: "30vw",
-                position: "absolute",
-                right: "50px",
-                bottom: "20px",
-                zIndex: -5,
-              }}
-              src="https://www.freepngimg.com/download/cookie/10-2-cookie-png-file.png"
-              alt="Cookies"
-              onClick={() => setShowCookieInput(!showCookieInput)}
-            />
-            <Form onSubmit={(e) => e.preventDefault()}>
-              <Form.Check
-                type="checkbox"
-                label="Google Kalender"
-                checked={settings.gcal}
-                onChange={() =>
-                  setSettings({ ...settings, gcal: !settings.gcal })
-                }
+            </p>
+            <div>
+              <img
+                className="d-none d-md-block"
+                style={{
+                  width: "30vw",
+                  position: "absolute",
+                  right: "50px",
+                  bottom: "20px",
+                  zIndex: -5,
+                }}
+                src="https://www.freepngimg.com/download/cookie/10-2-cookie-png-file.png"
+                alt="Cookies"
+                onClick={() => setShowCookieInput(!showCookieInput)}
               />
-              <Form.Check
-                type="checkbox"
-                label="Maps"
-                checked={settings.maps}
-                onChange={() =>
-                  setSettings({ ...settings, maps: !settings.maps })
-                }
-              />
-              <div>
+              <Form onSubmit={(e) => e.preventDefault()}>
                 <Form.Check
-                  type="radio"
-                  inline
-                  name="mapsRadio"
-                  label="Google Maps"
-                  checked={settings.gmaps}
-                  disabled={!settings.maps}
+                  type="checkbox"
+                  label="Google Kalender"
+                  checked={settings.gcal}
                   onChange={() =>
-                    setSettings({ ...settings, gmaps: true, omaps: false })
+                    setSettings({ ...settings, gcal: !settings.gcal })
                   }
                 />
                 <Form.Check
-                  type="radio"
-                  inline
-                  name="mapsRadio"
-                  label="Open Maps"
-                  checked={settings.omaps}
-                  disabled={!settings.maps}
+                  type="checkbox"
+                  label="Maps"
+                  checked={settings.maps}
                   onChange={() =>
-                    setSettings({ ...settings, gmaps: false, omaps: true })
+                    setSettings({ ...settings, maps: !settings.maps })
                   }
                 />
-              </div>
-              <button
-                className="btn btn-primary mt-2"
-                type="submit"
-                onClick={() => handleCookieSettings()}
-              >
-                Speichern
-              </button>{" "}
-              <small>
-                (setzt einen Cookie für {saveCookieForDays} Tag
-                {saveCookieForDays > 1 ? "e" : ""})
-              </small>
-              {showCookieInput && (
-                <Form.Control
-                  type="number"
-                  className="mt-1"
-                  min="0"
-                  max="365"
-                  value={saveCookieForDays}
-                  onInput={(e) => setSaveCookieForDays(e.target.value)}
-                />
-              )}
-            </Form>
-          </Offcanvas.Body>
-        </Offcanvas>
+                <div>
+                  <Form.Check
+                    type="radio"
+                    inline
+                    name="mapsRadio"
+                    label="Google Maps"
+                    checked={settings.gmaps}
+                    disabled={!settings.maps}
+                    onChange={() =>
+                      setSettings({ ...settings, gmaps: true, omaps: false })
+                    }
+                  />
+                  <Form.Check
+                    type="radio"
+                    inline
+                    name="mapsRadio"
+                    label="Open Maps"
+                    checked={settings.omaps}
+                    disabled={!settings.maps}
+                    onChange={() =>
+                      setSettings({ ...settings, gmaps: false, omaps: true })
+                    }
+                  />
+                </div>
+                <button
+                  className="btn btn-outline-secondary mt-2 me-1"
+                  type="submit"
+                  onClick={() => handleCookieSettings()}
+                >
+                  Speichern{" "}
+                  <small>
+                    (setzt einen Cookie mit den Einstellungen für{" "}
+                    {saveCookieForDays} Tag
+                    {saveCookieForDays > 1 ? "e" : ""})
+                  </small>
+                </button>
+                <button
+                  className="btn btn-primary mt-2"
+                  onClick={() => handleCookieSettings(-1)}
+                >
+                  Ohne Cookies fortfahren{" "}
+                  <small>(frägt beim nächsten Mal wieder)</small>
+                </button>
+                {showCookieInput && (
+                  <Form.Control
+                    type="number"
+                    className="mt-1"
+                    min="0"
+                    max="365"
+                    value={saveCookieForDays}
+                    onInput={(e) => setSaveCookieForDays(e.target.value)}
+                  />
+                )}
+              </Form>
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
   );
