@@ -5,12 +5,30 @@ import Helmet from "react-helmet";
 
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 
 import Cookies from "js-cookie";
 
 import NavbarComponent from "../components/navbar";
 import Mininav from "../components/mininav";
 import Location from "../components/location";
+
+import { initializeApp } from "firebase/app";
+import { getFirestore, doc, onSnapshot } from "firebase/firestore";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDsLFA46MNckwF6aaEslQJj5j4xq2R8k2c",
+  authDomain: "soli-erlangen.firebaseapp.com",
+  projectId: "soli-erlangen",
+  storageBucket: "soli-erlangen.appspot.com",
+  messagingSenderId: "203959319414",
+  appId: "1:203959319414:web:0a8ef5699710f50a3f9857",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 export default function Layout({
   pageTitle,
@@ -28,6 +46,12 @@ export default function Layout({
   const [showCookieInput, setShowCookieInput] = React.useState(false);
   const [saveCookieForDays, setSaveCookieForDays] = React.useState(30);
   const [isFluid, setIsFluid] = React.useState(false);
+  const [bannerSettings, setBannerSettings] = React.useState({
+    title: "",
+    description: "",
+    color: "",
+  });
+  const [showBanner, setShowBanner] = React.useState(true);
 
   React.useLayoutEffect(() => {
     const settingsCookie = Cookies.get("settings");
@@ -40,6 +64,7 @@ export default function Layout({
   }, []);
 
   React.useEffect(() => {
+    listenForUpdates();
     getIsFluid();
 
     document.addEventListener("resize", getIsFluid());
@@ -65,6 +90,12 @@ export default function Layout({
     setShowCookieAlert(false);
   }
 
+  async function listenForUpdates() {
+    onSnapshot(doc(db, "banner", "settings"), (doc) => {
+      setBannerSettings(doc.data());
+    });
+  }
+
   return (
     <div className="layout">
       <Helmet defer={false}>
@@ -84,8 +115,20 @@ export default function Layout({
         <link rel="icon" href="https://soli-erlangen.de/assets/logo.png" />
       </Helmet>
 
-      <header>
+      <header className="bg-success">
         <NavbarComponent />
+        {showBanner && (
+          <div className="container">
+            <Alert
+              variant={bannerSettings.color}
+              onClose={() => setShowBanner(false)}
+              dismissible
+            >
+              <Alert.Heading>{bannerSettings.title}</Alert.Heading>
+              <p>{bannerSettings.description}</p>
+            </Alert>
+          </div>
+        )}
         <Mininav />
       </header>
 
