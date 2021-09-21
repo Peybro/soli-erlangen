@@ -1,43 +1,114 @@
-// import * as React from "react";
+import * as React from "react";
 
-// import firebase from "firebase/app";
-// // Required for side-effects
-// import "firebase/firestore";
+import Layout from "../layouts/layout";
 
-// firebase.initializeApp({
-//   apiKey: "AIzaSyBwm8AtBzXiZSqSw7N2dZj1HRDj6NHUcFA",
-//   authDomain: "thomas-weiss-alles.firebaseapp.com",
-//   projectId: "thomas-weiss-alles",
-//   storageBucket: "thomas-weiss-alles.appspot.com",
-//   messagingSenderId: "512924210734",
-//   appId: "1:512924210734:web:f34d0898b750e88fda71bf",
-// });
+import Alert from "react-bootstrap/Alert";
 
-// const db = firebase.firestore();
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import db from "./../services/firebase";
 
-// export default function Set() {
-//   React.useEffect(() => {
-//     listenForUpdates();
-//   });
+export default function Set() {
+  const [enabled, setEnabled] = React.useState(false);
+  const [title, setTitle] = React.useState("");
+  const [description, setDescription] = React.useState("");
+  const [bgColor, setBgColor] = React.useState("");
+  const [pw, setPw] = React.useState("");
 
-//   // async function setHardCodedAnswer(val) {
-//   //     setLockedAnswer(val);
+  React.useEffect(() => {
+    getSettings();
+  }, []);
 
-//   //     db.collection("settings")
-//   //       .doc("default")
-//   //       .set({
-//   //         answer: val,
-//   //       })
-//   //       .catch((error) => {
-//   //         console.error(error);
-//   //       });
-//   //   }
+  async function setNewSettings() {
+    try {
+      await setDoc(doc(db, "banner", "settings"), {
+        pw: pw,
+        enabled: enabled,
+        title: title,
+        description: description,
+        bgColor: bgColor,
+      });
+    } catch {
+      alert("Falsches Passwort!");
+    }
+  }
 
-//   function listenForUpdates() {
-//     db.collection("settings")
-//       .doc("default")
-//       .onSnapshot((doc) => {
-//         console.log(doc.data().answer);
-//       });
-//   }
-// }
+  async function getSettings() {
+    const docRef = doc(db, "banner", "settings");
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      setEnabled(docSnap.data().enabled);
+      setTitle(docSnap.data().title);
+      setDescription(docSnap.data().description);
+      setBgColor(docSnap.data().bgColor);
+    } else {
+      console.log("No such document!");
+    }
+  }
+
+  return (
+    <Layout pageTitle="Bannersettings">
+      <div className="container mt-2">
+        <Alert variant={bgColor} dismissible>
+          <input
+            type="text"
+            className="form-control mb-2"
+            placeholder="Titel"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Beschreibung"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </Alert>
+
+        <div className="border p-2">
+          <div className="form-check form-switch float-end">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="enabled"
+              checked={enabled}
+              onChange={() => setEnabled(!enabled)}
+            />
+            <label className="form-check-label" htmlFor="enabled">
+              Anzeigen?
+            </label>
+          </div>
+          <div className="input-group mb-3">
+            <span className="input-group-text">Hintergrund</span>
+            <select
+              className="form-select"
+              onChange={(e) => setBgColor(e.target.value)}
+              value={bgColor}
+            >
+              <option value="success">Grün</option>
+              <option value="warning">Gelb</option>
+              <option value="danger">Rot</option>
+              <option value="primary">Blau</option>
+            </select>
+          </div>
+
+          <div className="input-group">
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Passwort"
+              onChange={(e) => setPw(e.target.value)}
+            />
+            <button
+              className="btn btn-secondary"
+              onClick={() => setNewSettings()}
+            >
+              Speichern
+            </button>
+          </div>
+        </div>
+      </div>
+    </Layout>
+  );
+}

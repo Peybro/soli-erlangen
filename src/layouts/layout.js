@@ -13,22 +13,8 @@ import NavbarComponent from "../components/navbar";
 import Mininav from "../components/mininav";
 import Location from "../components/location";
 
-import { initializeApp } from "firebase/app";
-import { getFirestore, doc, onSnapshot } from "firebase/firestore";
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyDsLFA46MNckwF6aaEslQJj5j4xq2R8k2c",
-  authDomain: "soli-erlangen.firebaseapp.com",
-  projectId: "soli-erlangen",
-  storageBucket: "soli-erlangen.appspot.com",
-  messagingSenderId: "203959319414",
-  appId: "1:203959319414:web:0a8ef5699710f50a3f9857",
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+import { doc, onSnapshot } from "firebase/firestore";
+import db from "./../services/firebase";
 
 export default function Layout({
   pageTitle,
@@ -47,9 +33,10 @@ export default function Layout({
   const [saveCookieForDays, setSaveCookieForDays] = React.useState(30);
   const [isFluid, setIsFluid] = React.useState(false);
   const [bannerSettings, setBannerSettings] = React.useState({
+    enabled: true,
     title: "",
     description: "",
-    color: "",
+    bgColor: "",
   });
   const [showBanner, setShowBanner] = React.useState(true);
 
@@ -71,7 +58,7 @@ export default function Layout({
     return () => {
       document.removeEventListener("resize", getIsFluid());
     };
-  });
+  }, []);
 
   function getIsFluid() {
     // Check if window is defined (so if in the browser or in node.js)
@@ -86,11 +73,11 @@ export default function Layout({
     Cookies.set("settings", JSON.stringify(settings), {
       expires: saveCookieForDays >= 0 ? parseInt(saveCookieForDays) : 0,
     });
-    onSettingsChange();
+    if (pageTitle === "index" || pageTitle === "kalender") onSettingsChange();
     setShowCookieAlert(false);
   }
 
-  async function listenForUpdates() {
+  function listenForUpdates() {
     onSnapshot(doc(db, "banner", "settings"), (doc) => {
       setBannerSettings(doc.data());
     });
@@ -117,18 +104,20 @@ export default function Layout({
 
       <header className="bg-success">
         <NavbarComponent />
-        {showBanner && (
-          <div className="container">
-            <Alert
-              variant={bannerSettings.color}
-              onClose={() => setShowBanner(false)}
-              dismissible
-            >
-              <Alert.Heading>{bannerSettings.title}</Alert.Heading>
-              <p>{bannerSettings.description}</p>
-            </Alert>
-          </div>
-        )}
+        {(pageTitle === "index" || pageTitle === "Bannersettings") &&
+          showBanner &&
+          bannerSettings.enabled && (
+            <div className="container">
+              <Alert
+                variant={bannerSettings.bgColor}
+                onClose={() => setShowBanner(false)}
+                dismissible
+              >
+                <Alert.Heading>{bannerSettings.title}</Alert.Heading>
+                <p>{bannerSettings.description}</p>
+              </Alert>
+            </div>
+          )}
         <Mininav />
       </header>
 
@@ -148,7 +137,7 @@ export default function Layout({
           }
         />
         <hr />
-        <p className="mt-4 w-100">
+        <div className="mt-4 w-100">
           <small>
             Rad und Kraftfahrerverein Solidarität Erlangen 1903 e. V.
           </small>
@@ -164,7 +153,7 @@ export default function Layout({
               Einstellungen
             </span>
           </div>
-        </p>
+        </div>
         <Offcanvas
           show={showCookieAlert}
           placement={"bottom"}
