@@ -4,6 +4,8 @@ import Layout from "../layouts/layout";
 
 import Alert from "react-bootstrap/Alert";
 
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import db from "./../services/firebase";
 
@@ -13,23 +15,37 @@ export default function Set() {
   const [description, setDescription] = React.useState("");
   const [bgColor, setBgColor] = React.useState("");
   const [pw, setPw] = React.useState("");
+  const [infoAlert, setInfoAlert] = React.useState(false);
 
   React.useEffect(() => {
     getSettings();
   }, []);
 
-  async function setNewSettings() {
-    try {
-      await setDoc(doc(db, "banner", "settings"), {
-        pw: pw,
-        enabled: enabled,
-        title: title,
-        description: description,
-        bgColor: bgColor,
+  function setNewSettings() {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, "vorstand@soli-erlangen.de", pw)
+      .then(async (userCredential) => {
+        //? Signed in
+        // const user = userCredential.user;
+        // console.log(user);
+        await setDoc(doc(db, "banner", "settings"), {
+          enabled: enabled,
+          title: title,
+          description: description,
+          bgColor: bgColor,
+        });
+
+        setInfoAlert(true);
+        setTimeout(() => {
+          setInfoAlert(false);
+        }, 5000);
+      })
+      .catch((error) => {
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+        // console.log(errorCode, errorMessage);
+        alert("Falsches Passwort!");
       });
-    } catch {
-      alert("Falsches Passwort!");
-    }
   }
 
   async function getSettings() {
@@ -93,6 +109,8 @@ export default function Set() {
             </select>
           </div>
 
+          {infoAlert && <Alert variant="info">Speichern erfolgreich.</Alert>}
+
           <div className="input-group">
             <input
               type="password"
@@ -103,6 +121,7 @@ export default function Set() {
             <button
               className="btn btn-secondary"
               onClick={() => setNewSettings()}
+              disabled={pw === ""}
             >
               Speichern
             </button>
