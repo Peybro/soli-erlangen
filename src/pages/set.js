@@ -66,22 +66,11 @@ export default function Set() {
     <Layout pageTitle="Bannersettings">
       <div className="container mt-2">
         <Alert variant={bgColor} dismissible>
-          <input
-            type="text"
-            className="form-control mb-2"
-            placeholder="Titel"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Beschreibung"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
+          <Alert.Heading>{title}</Alert.Heading>
+          <p>{description}</p>
         </Alert>
 
+        <h2 className="heading">Benachrichtigung bearbeiten</h2>
         <div className="border p-2">
           <div className="form-check form-switch float-end">
             <input
@@ -95,7 +84,7 @@ export default function Set() {
               Anzeigen?
             </label>
           </div>
-          <div className="input-group mb-3">
+          <div className="input-group">
             <span className="input-group-text">Hintergrund</span>
             <select
               className="form-select"
@@ -107,6 +96,26 @@ export default function Set() {
               <option value="danger">Rot</option>
               <option value="primary">Blau</option>
             </select>
+          </div>
+          <div className="input-group my-1">
+            <span className="input-group-text">Titel</span>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Titel"
+              value={title}
+              onInput={(e) => setTitle(e.target.value)}
+            />
+          </div>
+          <div className="input-group mb-3">
+            <span className="input-group-text">Beschreibung</span>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Beschreibung"
+              value={description}
+              onInput={(e) => setDescription(e.target.value)}
+            />
           </div>
 
           {infoAlert && <Alert variant="info">Speichern erfolgreich.</Alert>}
