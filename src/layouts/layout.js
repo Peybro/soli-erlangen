@@ -4,12 +4,16 @@ import { Link } from "gatsby";
 import Helmet from "react-helmet";
 
 import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 
 import Cookies from "js-cookie";
 
 import NavbarComponent from "../components/navbar";
 import Mininav from "../components/mininav";
 import Location from "../components/location";
+
+import { doc, onSnapshot } from "firebase/firestore";
+import db from "./../services/firebase";
 
 export default function Layout({
   pageTitle,
@@ -27,6 +31,13 @@ export default function Layout({
   const [showCookieInput, setShowCookieInput] = React.useState(false);
   const [saveCookieForDays, setSaveCookieForDays] = React.useState(30);
   const [isFluid, setIsFluid] = React.useState(false);
+  const [bannerSettings, setBannerSettings] = React.useState({
+    enabled: true,
+    title: "",
+    description: "",
+    bgColor: "",
+  });
+  const [showBanner, setShowBanner] = React.useState(true);
 
   React.useLayoutEffect(() => {
     const settingsCookie = Cookies.get("settings");
@@ -39,13 +50,14 @@ export default function Layout({
   }, []);
 
   React.useEffect(() => {
+    listenForUpdates();
     getIsFluid();
 
     document.addEventListener("resize", getIsFluid());
     return () => {
       document.removeEventListener("resize", getIsFluid());
     };
-  });
+  }, []);
 
   function getIsFluid() {
     // Check if window is defined (so if in the browser or in node.js)
@@ -64,9 +76,14 @@ export default function Layout({
         ? parseInt(saveCookieForDays)
         : 0,
     });
-    //TODO
-    // onSettingsChange();
+    if (pageTitle === "index" || pageTitle === "kalender") onSettingsChange();
     setShowCookieAlert(false);
+  }
+
+  function listenForUpdates() {
+    onSnapshot(doc(db, "banner", "settings"), (doc) => {
+      setBannerSettings(doc.data());
+    });
   }
 
   return (
@@ -88,8 +105,22 @@ export default function Layout({
         <link rel="icon" href="https://soli-erlangen.de/assets/logo.png" />
       </Helmet>
 
-      <header>
+      <header className="bg-success">
         <NavbarComponent />
+        {(pageTitle === "index" || pageTitle === "Bannersettings") &&
+          showBanner &&
+          bannerSettings.enabled && (
+            <div className="container">
+              <Alert
+                variant={bannerSettings.bgColor}
+                onClose={() => setShowBanner(false)}
+                dismissible
+              >
+                <Alert.Heading>{bannerSettings.title}</Alert.Heading>
+                <p>{bannerSettings.description}</p>
+              </Alert>
+            </div>
+          )}
         <Mininav />
       </header>
 
