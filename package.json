@@ -19,6 +19,7 @@
   "dependencies": {
     "bootstrap": "^5.0.2",
     "bootstrap-icons": "^1.5.0",
+    "firebase": "^9.0.2",
     "gatsby": "^3.10.2",
     "gatsby-plugin-react-helmet": "^4.10.0",
     "gatsby-plugin-sass": "^4.10.0",
