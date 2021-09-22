@@ -67,7 +67,9 @@ export default function Set() {
       <div className="container mt-2">
         <Alert variant={bgColor} dismissible>
           <Alert.Heading>{title}</Alert.Heading>
-          <p>{description}</p>
+          {description.split("\n").map((line, i) => {
+            return <p key={i} className="mb-0">{line}</p>;
+          })}
         </Alert>
 
         <h2 className="heading">Benachrichtigung bearbeiten</h2>
@@ -109,13 +111,20 @@ export default function Set() {
           </div>
           <div className="input-group mb-3">
             <span className="input-group-text">Beschreibung</span>
-            <input
+            <textarea
               type="text"
               className="form-control"
               placeholder="Beschreibung"
               value={description}
               onInput={(e) => setDescription(e.target.value)}
-            />
+            ></textarea>
+            {/* <input
+              type="text"
+              className="form-control"
+              placeholder="Beschreibung"
+              value={description}
+              onInput={(e) => setDescription(e.target.value)}
+            /> */}
           </div>
 
           {infoAlert && <Alert variant="info">Speichern erfolgreich.</Alert>}

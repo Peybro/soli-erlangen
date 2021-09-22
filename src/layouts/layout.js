@@ -114,7 +114,13 @@ export default function Layout({
                 dismissible
               >
                 <Alert.Heading>{bannerSettings.title}</Alert.Heading>
-                <p>{bannerSettings.description}</p>
+                {bannerSettings.description.split("\n").map((line, i) => {
+                  return (
+                    <p key={i} className="mb-0">
+                      {line}
+                    </p>
+                  );
+                })}
               </Alert>
             </div>
           )}
