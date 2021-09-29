@@ -9,6 +9,7 @@ export default function Trainer({ open }) {
       email: "vorstand@soli-erlangen.de",
       telefon: "09132 796970",
       mobil: "49017645145696",
+      icon: "",
     },
     {
       sport: "Kunstrad",
@@ -16,6 +17,7 @@ export default function Trainer({ open }) {
       email: "kunstrad@soli-erlangen.de",
       telefon: "",
       mobil: "",
+      icon: "https://www.soli-erlangen.de/assets/stickmen/logo_kunstrad_q.png",
     },
     {
       sport: "Reigen",
@@ -23,6 +25,7 @@ export default function Trainer({ open }) {
       email: "reigen@soli-erlangen.de",
       telefon: "09131 49454",
       mobil: "",
+      icon: "https://www.soli-erlangen.de/assets/stickmen/logo_reigen_q.png",
     },
     {
       sport: "Radball",
@@ -30,6 +33,23 @@ export default function Trainer({ open }) {
       email: "radball@soli-erlangen.de",
       telefon: "",
       mobil: "49017643839664",
+      icon: "https://www.soli-erlangen.de/assets/stickmen/logo_radball_q.png",
+    },
+    {
+      sport: "Gymnastik",
+      name: "Heiner",
+      email: "gymnastik@soli-erlangen.de",
+      telefon: "09131 990149",
+      mobil: "",
+      icon: "https://www.soli-erlangen.de/assets/stickmen/logo_gymnastik_q.png",
+    },
+    {
+      sport: "Kinderturnen",
+      name: "Ralf",
+      email: "kinderturnen@soli-erlagen.de",
+      telefon: "09132 796970",
+      mobil: "49017645145696",
+      icon: "https://www.soli-erlangen.de/assets/stickmen/logo_kinderturnen_q.png",
     },
     {
       sport: "Kindertanzen",
@@ -37,6 +57,7 @@ export default function Trainer({ open }) {
       email: "kindertanzen@soli-erlangen.de",
       telefon: "",
       mobil: "49017632843418",
+      icon: "https://www.soli-erlangen.de/assets/stickmen/logo_kindertanzen_q.png",
     },
   ];
 
@@ -45,7 +66,12 @@ export default function Trainer({ open }) {
       {trainer.map((person, i) => {
         return (
           <Accordion.Item eventKey={person.sport.toLowerCase()} key={i}>
-            <Accordion.Header>{person.sport}</Accordion.Header>
+            <Accordion.Header>
+              {person.icon && (
+                <img src={person.icon} width="30" alt="Sports Icon" />
+              )}
+              {person.sport}
+            </Accordion.Header>
             <Accordion.Body>
               <h4>{person.name}</h4>
               {person.email.length > 0 && (
