@@ -1,27 +1,36 @@
-import { Link } from "react-router-dom";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import { LinkContainer } from "react-router-bootstrap";
 
 export default function Mininav() {
   return (
-    <Nav className="justify-content-center">
-      <Nav.Item>
-        <Link to="/kunstrad">Kunstrad</Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Link to="/reigen">Reigen</Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Link to="/radball">Radball</Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Link to="/gymnastik">Gymnastik</Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Link to="/kinderturnen">Kinderturnen</Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Link to="/kindertanzen">Kindertanzen</Link>
-      </Nav.Item>
-    </Nav>
+    <Navbar bg="success" variant="dark" expand="lg">
+      <Nav className="justify-content-center">
+        <LinkContainer to="/kunstrad">
+          <Nav.Link>Kunstrad</Nav.Link>
+        </LinkContainer>
+
+        <LinkContainer to="/reigen">
+          <Nav.Link>Reigen</Nav.Link>
+        </LinkContainer>
+
+        <LinkContainer to="/radball">
+          <Nav.Link>Radball</Nav.Link>
+        </LinkContainer>
+
+        <LinkContainer to="/gymnastik">
+          <Nav.Link>Gymnastik</Nav.Link>
+        </LinkContainer>
+
+        <LinkContainer to="/kinderturnen">
+          <Nav.Link>Kinderturnen</Nav.Link>
+        </LinkContainer>
+
+        <LinkContainer to="/kindertanzen">
+          <Nav.Link>Kindertanzen</Nav.Link>
+        </LinkContainer>
+      </Nav>
+    </Navbar>
   );
 }
