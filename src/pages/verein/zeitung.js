@@ -7,7 +7,7 @@ export default function Zeitung() {
   const setting = {
     start: 2005,
     last: {
-      year: 2020,
+      year: 2021,
       version: 2,
     },
     link: "https://www.soli-erlangen.de/assets/vereinsblatt/soli_info_",
