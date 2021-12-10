@@ -34,23 +34,33 @@ export default function Zeitung() {
                   <h2>
                     April {year} - September {year}
                   </h2>
-                  <iframe
-                    src={`${setting.link}${year}_1.pdf`}
-                    className="d-none d-md-block mb-1"
-                    loading="lazy"
-                    width="100%"
-                    height="300px"
-                    title={`${setting.link}${year}_1`}
-                  />
-                  <a
-                    type="button"
-                    className="btn btn-primary"
-                    href={`${setting.link}${year}_1.pdf`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Größer anzeigen
-                  </a>
+                  {year !== 2021 && (
+                    <>
+                      <iframe
+                        src={`${setting.link}${year}_1.pdf`}
+                        className="d-none d-md-block mb-1"
+                        loading="lazy"
+                        width="100%"
+                        height="300px"
+                        title={`${setting.link}${year}_1`}
+                      />
+                      <a
+                        type="button"
+                        className="btn btn-primary"
+                        href={`${setting.link}${year}_1.pdf`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Größer anzeigen
+                      </a>
+                    </>
+                  )}
+                  {year === 2021 && (
+                    <p>
+                      Pandemiebedingt gab es in diesem Zeitraum keine
+                      Neuigkeiten im Vereinsgeschehen.
+                    </p>
+                  )}
                 </div>
                 {setting.last.version === 2 && (
                   <div className="col">
