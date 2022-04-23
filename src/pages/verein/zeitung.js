@@ -62,7 +62,6 @@ export default function Zeitung() {
                     </p>
                   )}
                 </div>
-                {setting.last.version === 2 && (
                   <div className="col">
                     <h2>
                       Oktober {year} - März {year + 1}
@@ -85,7 +84,6 @@ export default function Zeitung() {
                       Größer anzeigen
                     </a>
                   </div>
-                )}
               </div>
             </Accordion.Body>
           </Accordion.Item>
