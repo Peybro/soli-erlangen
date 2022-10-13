@@ -8,7 +8,7 @@ export default function Zeitung() {
     start: 2005,
     last: {
       year: 2022,
-      version: 1,
+      version: 2,
     },
     link: "https://www.soli-erlangen.de/assets/vereinsblatt/soli_info_",
   };
