@@ -1,6 +1,13 @@
 import * as React from "react";
 import Accordion from "react-bootstrap/Accordion";
 
+import kunstradLogo from "./../../static/stickmen/logo_kunstrad_q.png";
+import reigenLogo from "./../../static/stickmen/logo_reigen_q.png";
+import radballLogo from "./../../static/stickmen/logo_radball_q.png";
+import gymnastikLogo from "./../../static/stickmen/logo_gymnastik_q.png";
+import kinderturnenLogo from "./../../static/stickmen/logo_kinderturnen_q.png";
+import kindertanzenLogo from "./../../static/stickmen/logo_kindertanzen_q.png";
+
 export default function Trainer({ open }) {
   const trainer = [
     {
@@ -17,7 +24,7 @@ export default function Trainer({ open }) {
       email: "kunstrad@soli-erlangen.de",
       telefon: "",
       mobil: "",
-      icon: "https://www.soli-erlangen.de/assets/stickmen/logo_kunstrad_q.png",
+      icon: kunstradLogo,
     },
     {
       sport: "Reigen",
@@ -25,7 +32,7 @@ export default function Trainer({ open }) {
       email: "reigen@soli-erlangen.de",
       telefon: "09131 49454",
       mobil: "",
-      icon: "https://www.soli-erlangen.de/assets/stickmen/logo_reigen_q.png",
+      icon: reigenLogo,
     },
     {
       sport: "Radball",
@@ -33,7 +40,7 @@ export default function Trainer({ open }) {
       email: "radball@soli-erlangen.de",
       telefon: "",
       mobil: "49017643839664",
-      icon: "https://www.soli-erlangen.de/assets/stickmen/logo_radball_q.png",
+      icon: radballLogo,
     },
     {
       sport: "Gymnastik",
@@ -41,7 +48,7 @@ export default function Trainer({ open }) {
       email: "gymnastik@soli-erlangen.de",
       telefon: "09131 990149",
       mobil: "",
-      icon: "https://www.soli-erlangen.de/assets/stickmen/logo_gymnastik_q.png",
+      icon: gymnastikLogo,
     },
     {
       sport: "Kinderturnen",
@@ -49,7 +56,7 @@ export default function Trainer({ open }) {
       email: "kinderturnen@soli-erlagen.de",
       telefon: "09132 796970",
       mobil: "49017645145696",
-      icon: "https://www.soli-erlangen.de/assets/stickmen/logo_kinderturnen_q.png",
+      icon: kinderturnenLogo,
     },
     {
       sport: "Kindertanzen",
@@ -57,7 +64,7 @@ export default function Trainer({ open }) {
       email: "kindertanzen@soli-erlangen.de",
       telefon: "",
       mobil: "49017632843418",
-      icon: "https://www.soli-erlangen.de/assets/stickmen/logo_kindertanzen_q.png",
+      icon: kindertanzenLogo,
     },
   ];
 

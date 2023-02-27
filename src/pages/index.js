@@ -8,40 +8,16 @@ import "./../styles/bootstrap.scss";
 
 import Trainer from "./../components/trainer";
 
-const IndexPage = () => {
-  let images = [
-    {
-      src: "https://soli-erlangen.de/assets/slideshow/radball_generationen.jpg",
-      alt: "Solidarität vereint Generationen",
-      title: "Radball von jung bis alt",
-      desc: "Bei uns steht neben dem Wettkampf vor allem der Spaß im Vordergrund",
-    },
-    {
-      src: "https://soli-erlangen.de/assets/slideshow/radball_bankübung.jpg",
-      alt: "Bankübung",
-      title: "Übung macht den Meister",
-      desc: "Nicht nur Stehen, sondern auch kontrolliertes Hüpfen auf einem Rad ist möglich",
-    },
-    {
-      src: "https://soli-erlangen.de/assets/slideshow/radball_moritz-und-tobi-2.jpg",
-      alt: "Stehen mit Radballrädern",
-      title: "Moritz und Tobi (U19)",
-      desc: "Das Stehen ist mit den besonderen Rädern kein Problem",
-    },
-    {
-      src: "https://soli-erlangen.de/assets/slideshow/radball_ecke.jpg",
-      alt: "Eckentraining",
-      title: "Eckentraining",
-      desc: "Viele Regeln beim Radball ähneln denen des Fußballs",
-    },
-    {
-      src: "https://soli-erlangen.de/assets/slideshow/radball_bankübung_moritz-und-tobi.jpg",
-      alt: "Bankübung",
-      title: "Bankübung",
-      desc: "Verschiedene Übungen gehören dazu um erfolgreich die Tricks zu beherrschen",
-    },
-  ];
+import {
+  gymnastikImages,
+  kindertanzenImages,
+  kinderturnenImages,
+  kunstradImages,
+  radballImages,
+  reigenImages,
+} from "./../services/imageService";
 
+const IndexPage = () => {
   const [showCalendar, setShowCalendar] = React.useState(false);
 
   React.useEffect(() => {
@@ -55,6 +31,18 @@ const IndexPage = () => {
 
   function handleSettingsChange() {
     getCalendarSetting();
+  }
+
+  /**
+   * Shuffles array in place. ES6 version
+   * @param {Array} a items An array containing the items.
+   */
+  function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
   }
 
   return (
@@ -90,7 +78,14 @@ const IndexPage = () => {
           </div>
           <div className="col-md order-first order-md-last">
             <Carousel>
-              {images.map((image, i) => {
+              {shuffle([
+                ...gymnastikImages,
+                ...kindertanzenImages,
+                ...kinderturnenImages,
+                ...kunstradImages,
+                ...radballImages,
+                ...reigenImages,
+              ]).map((image, i) => {
                 return (
                   <Carousel.Item key={i}>
                     <img

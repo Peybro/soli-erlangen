@@ -3,6 +3,8 @@ import "./../../styles/bootstrap.scss";
 import Layout from "../../layouts/layout";
 import SportLayout from "../../layouts/sportLayout";
 
+import { radballImages } from "../../services/imageService";
+
 export default function Radball() {
   const title = "Radball";
 
@@ -15,6 +17,7 @@ export default function Radball() {
           "Freitag: 16:30 - 18:00 Uhr (Kinder)",
           "Freitag: 18:00 - 19:30 Uhr (Jugend)",
         ]}
+        slideshow={radballImages}
       >
         <p>
           Radball gehört zur Sparte des Hallenradsports. Zwei Teams versuchen,

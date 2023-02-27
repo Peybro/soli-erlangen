@@ -3,6 +3,8 @@ import "./../../styles/bootstrap.scss";
 import Layout from "../../layouts/layout";
 import SportLayout from "../../layouts/sportLayout";
 
+import { reigenImages } from "../../services/imageService";
+
 export default function Reigen() {
   const title = "Reigen";
 
@@ -14,6 +16,7 @@ export default function Reigen() {
           "Donnerstag: 16:00 - 17:00 Uhr (Schüler / Jugend)",
           "Donnerstag: 17:00 - 18:00 Uhr (Jugend)",
         ]}
+        slideshow={reigenImages}
       >
         <p>
           Früher war ein Einradfahrer eine Zirkussensation; heute ist es jedoch
