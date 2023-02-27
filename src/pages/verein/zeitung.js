@@ -10,7 +10,7 @@ export default function Zeitung() {
       year: 2022,
       version: 2,
     },
-    link: "https://www.soli-erlangen.de/assets/vereinsblatt/soli_info_",
+    link: "https://www.soli-erlangen.de/public/vereinsblatt/soli_info_",
   };
 
   function getYearArray() {

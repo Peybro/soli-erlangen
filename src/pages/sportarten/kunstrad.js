@@ -3,12 +3,18 @@ import "./../../styles/bootstrap.scss";
 import Layout from "../../layouts/layout";
 import SportLayout from "../../layouts/sportLayout";
 
+import { kunstradImages } from "../../services/imageService";
+
 export default function Kunstrad() {
   const title = "Kunstrad";
 
   return (
     <Layout pageTitle={title}>
-      <SportLayout title={title} times={["Dienstag: 18:00 - 19:30 Uhr"]}>
+      <SportLayout
+        title={title}
+        times={["Dienstag: 18:00 - 19:30 Uhr"]}
+        slideshow={kunstradImages}
+      >
         <p>
           Kunstradfahren ist ein Hallenradsport, der sehr viel mit Ästhetik zu
           tun hat.

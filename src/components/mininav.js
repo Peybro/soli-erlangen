@@ -1,33 +1,40 @@
 import * as React from "react";
 import { Link } from "gatsby";
 
+import kunstradLogo from "./../../static/stickmen/logo_kunstrad_q.png";
+import reigenLogo from "./../../static/stickmen/logo_reigen_q.png";
+import radballLogo from "./../../static/stickmen/logo_radball_q.png";
+import gymnastikLogo from "./../../static/stickmen/logo_gymnastik_q.png";
+import kinderturnenLogo from "./../../static/stickmen/logo_kinderturnen_q.png";
+import kindertanzenLogo from "./../../static/stickmen/logo_kindertanzen_q.png";
+
 import Nav from "react-bootstrap/Nav";
 
 export default function Mininav() {
   const sports = [
     {
       name: "Kunstrad",
-      src: "https://www.soli-erlangen.de/assets/stickmen/logo_kunstrad_q.png",
+      src: kunstradLogo,
     },
     {
       name: "Reigen",
-      src: "https://www.soli-erlangen.de/assets/stickmen/logo_reigen_q.png",
+      src: reigenLogo,
     },
     {
       name: "Radball",
-      src: "https://www.soli-erlangen.de/assets/stickmen/logo_radball_q.png",
+      src: radballLogo,
     },
     {
       name: "Gymnastik",
-      src: "https://www.soli-erlangen.de/assets/stickmen/logo_gymnastik_q.png",
+      src: gymnastikLogo,
     },
     {
       name: "Kinderturnen",
-      src: "https://www.soli-erlangen.de/assets/stickmen/logo_kinderturnen_q.png",
+      src: kinderturnenLogo,
     },
     {
       name: "Kindertanzen",
-      src: "https://www.soli-erlangen.de/assets/stickmen/logo_kindertanzen_q.png",
+      src: kindertanzenLogo,
     },
   ];
 

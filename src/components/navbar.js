@@ -5,6 +5,8 @@ import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
+import soliLogo from "./../../static/logo.png";
+
 export default function NavbarComponent() {
   return (
     <Navbar
@@ -17,8 +19,8 @@ export default function NavbarComponent() {
       <Container fluid>
         <Link className="navbar-brand" to="/">
           <img
-            src="https://soli-erlangen.de/assets/logo.png"
-            alt="[Logo]"
+            src={soliLogo}
+            alt="Soli Logo"
             height="30"
             className="d-inline-block align-top"
           />{" "}

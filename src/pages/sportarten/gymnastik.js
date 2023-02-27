@@ -3,12 +3,18 @@ import "./../../styles/bootstrap.scss";
 import Layout from "../../layouts/layout";
 import SportLayout from "../../layouts/sportLayout";
 
+import { gymnastikImages } from "../../services/imageService";
+
 export default function Gymnastik() {
   const title = "Gymnastik";
 
   return (
     <Layout pageTitle={title}>
-      <SportLayout title={title} times={["Dienstag: 19:30 - 22:00 Uhr"]}>
+      <SportLayout
+        title={title}
+        times={["Dienstag: 19:30 - 22:00 Uhr"]}
+        slideshow={gymnastikImages}
+      >
         <p>
           Freude an sportlicher Betätigung zur Erhaltung der Fitness für den
           eigenen Körper, ohne im Wettkampf mit Maßband und Stoppuhr ermittelte

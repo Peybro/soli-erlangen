@@ -3,12 +3,18 @@ import "./../../styles/bootstrap.scss";
 import Layout from "../../layouts/layout";
 import SportLayout from "../../layouts/sportLayout";
 
+import { kinderturnenImages } from "../../services/imageService";
+
 export default function Kinderturnen() {
   const title = "Kinderturnen";
 
   return (
     <Layout pageTitle={title}>
-      <SportLayout title={title} times={["Dienstag: 17:00 - 18:00 Uhr"]}>
+      <SportLayout
+        title={title}
+        times={["Dienstag: 17:00 - 18:00 Uhr"]}
+        slideshow={kinderturnenImages}
+      >
         <p>
           Durch Umsetzung bestimmter Handlungsprinzipien soll ein langfristiger
           Wechsel vom Mitmachen und Mitspielen zum selbstbestimmten Handeln
