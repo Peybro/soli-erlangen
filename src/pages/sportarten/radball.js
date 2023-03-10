@@ -14,7 +14,7 @@ export default function Radball() {
         title={title}
         times={[
           "Donnerstag: 19:30 - 22:00 Uhr",
-          "Freitag: 16:30 - 18:00 Uhr (Kinder)",
+          "Freitag: 16:30 - 18:00 Uhr (Kinder) (Bitte vorher anfragen))",
           "Freitag: 18:00 - 19:30 Uhr (Jugend)",
         ]}
         slideshow={radballImages}
