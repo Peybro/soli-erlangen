@@ -68,7 +68,11 @@ export default function Set() {
         <Alert variant={bgColor} dismissible>
           <Alert.Heading>{title}</Alert.Heading>
           {description.split("\n").map((line, i) => {
-            return <p key={i} className="mb-0">{line}</p>;
+            return (
+              <p key={i} className="mb-0">
+                {line}
+              </p>
+            );
           })}
         </Alert>
 

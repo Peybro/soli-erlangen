@@ -62,28 +62,28 @@ export default function Zeitung() {
                     </p>
                   )}
                 </div>
-                  <div className="col">
-                    <h2>
-                      Oktober {year} - März {year + 1}
-                    </h2>
-                    <iframe
-                      src={`${setting.link}${year}_2.pdf`}
-                      className="d-none d-md-block mb-1"
-                      loading="lazy"
-                      width="100%"
-                      height="300px"
-                      title={`${setting.link}${year}_2`}
-                    />
-                    <a
-                      type="button"
-                      className="btn btn-primary"
-                      href={`${setting.link}${year}_2.pdf`}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Größer anzeigen
-                    </a>
-                  </div>
+                <div className="col">
+                  <h2>
+                    Oktober {year} - März {year + 1}
+                  </h2>
+                  <iframe
+                    src={`${setting.link}${year}_2.pdf`}
+                    className="d-none d-md-block mb-1"
+                    loading="lazy"
+                    width="100%"
+                    height="300px"
+                    title={`${setting.link}${year}_2`}
+                  />
+                  <a
+                    type="button"
+                    className="btn btn-primary"
+                    href={`${setting.link}${year}_2.pdf`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Größer anzeigen
+                  </a>
+                </div>
               </div>
             </Accordion.Body>
           </Accordion.Item>

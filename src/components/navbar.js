@@ -54,7 +54,7 @@ export default function NavbarComponent() {
               <NavDropdown.Divider />
               <a
                 className="dropdown-item"
-                href="https://www.facebook.com/pg/RalfHaeusinger"
+                href="https://de-de.facebook.com/RalfHaeusinger/"
               >
                 <i className="bi-facebook" /> Aktuelles
               </a>

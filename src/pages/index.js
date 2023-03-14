@@ -38,7 +38,15 @@ const IndexPage = () => {
    * @param {Array} a items An array containing the items.
    */
   function shuffle(a) {
-    return a.map(value => ({ value, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ value }) => value)
+    const shuffled = a
+      .map((value) => ({ value, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ value }) => value);
+
+    console.log(a);
+    console.log(shuffled);
+
+    return shuffled;
   }
 
   return (
@@ -52,7 +60,7 @@ const IndexPage = () => {
                 <a
                   type="button"
                   className="col-2 btn btn-primary"
-                  href="https://www.facebook.com/pg/RalfHaeusinger"
+                  href="https://de-de.facebook.com/RalfHaeusinger/"
                 >
                   <i className="bi-facebook" />
                 </a>

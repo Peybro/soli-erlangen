@@ -99,7 +99,7 @@ const radballImages = [
     alt: "Bankübung",
     title: "Bankübung",
     desc: "Verschiedene Übungen gehören dazu um erfolgreich die Tricks zu beherrschen",
-  }
+  },
   //   {
   //     src: radballMoritzUndTobi3,
   //     alt: "",
