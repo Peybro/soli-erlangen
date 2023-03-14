@@ -1,11 +1,15 @@
 // Gymnastik
+
 // Kindertanzen
 import kindertanzen1 from "./../../static/Bilder/Kindertanzen/20230212_155300.jpg";
 import kindertanzen2 from "./../../static/Bilder/Kindertanzen/20230212_155532.jpg";
+
 // Kinderturnen
+
 // Kunstrad
 import kunstrad1 from "./../../static/Bilder/Kunstrad/20191115_200539.jpg";
 import kunstrad2 from "./../../static/Bilder/Kunstrad/G20191116-165945_109E72_img1.jpg";
+
 // Radball
 import radballBankÜbung2 from "./../../static/Bilder/Radball/radball_bankübung_moritz-und-tobi.jpg";
 import radballBankÜbung from "./../../static/Bilder/Radball/radball_bankübung.jpg";
@@ -14,6 +18,9 @@ import radballGenerationen from "./../../static/Bilder/Radball/radball_generatio
 import radballMoritzUndTobi2 from "./../../static/Bilder/Radball/radball_moritz-und-tobi-2.jpg";
 import radballMoritzUndTobi3 from "./../../static/Bilder/Radball/radball_moritz-und-tobi-3.jpg";
 import radballMoritzUndTobi4 from "./../../static/Bilder/Radball/radball_moritz-und-tobi.jpg";
+import radballMoritzUndRemo from "./../../static/Bilder/Radball/radball_moritz-und-remo.jpg";
+import radballAnpfiff from "./../../static/Bilder/Radball/radball_anpfiff.jpg";
+
 // Reigen
 import reigen1 from "./../../static/Bilder/Reigen/20230212_155921.jpg";
 import reigen2 from "./../../static/Bilder/Reigen/20230212_160040.jpg";
@@ -52,6 +59,12 @@ const kunstradImages = [
 ];
 const radballImages = [
   {
+    src: radballAnpfiff,
+    alt: "",
+    title: "",
+    desc: "",
+  },
+  {
     src: radballGenerationen,
     alt: "Solidarität vereint Generationen",
     title: "Radball von jung bis alt",
@@ -70,6 +83,12 @@ const radballImages = [
     desc: "Das Stehen ist mit den besonderen Rädern kein Problem",
   },
   {
+    src: radballMoritzUndRemo,
+    alt: "",
+    title: "",
+    desc: "",
+  },
+  {
     src: radballEcke,
     alt: "Eckentraining",
     title: "Eckentraining",
@@ -80,19 +99,19 @@ const radballImages = [
     alt: "Bankübung",
     title: "Bankübung",
     desc: "Verschiedene Übungen gehören dazu um erfolgreich die Tricks zu beherrschen",
-  },
-//   {
-//     src: radballMoritzUndTobi3,
-//     alt: "",
-//     title: "",
-//     desc: "",
-//   },
-//   {
-//     src: radballMoritzUndTobi4,
-//     alt: "",
-//     title: "",
-//     desc: "",
-//   },
+  }
+  //   {
+  //     src: radballMoritzUndTobi3,
+  //     alt: "",
+  //     title: "",
+  //     desc: "",
+  //   },
+  //   {
+  //     src: radballMoritzUndTobi4,
+  //     alt: "",
+  //     title: "",
+  //     desc: "",
+  //   },
 ];
 const reigenImages = [
   {
@@ -101,18 +120,18 @@ const reigenImages = [
     title: "",
     desc: "",
   },
-//   {
-//     src: reigen2,
-//     alt: "",
-//     title: "",
-//     desc: "",
-//   },
-//   {
-//     src: reigen3,
-//     alt: "",
-//     title: "",
-//     desc: "",
-//   },
+  //   {
+  //     src: reigen2,
+  //     alt: "",
+  //     title: "",
+  //     desc: "",
+  //   },
+  //   {
+  //     src: reigen3,
+  //     alt: "",
+  //     title: "",
+  //     desc: "",
+  //   },
   {
     src: reigen4,
     alt: "",
