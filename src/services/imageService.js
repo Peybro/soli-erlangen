@@ -31,38 +31,38 @@ const gymnastikImages = [];
 const kindertanzenImages = [
   {
     src: kindertanzen1,
-    alt: "",
-    title: "",
-    desc: "",
+    alt: "Kinder beim Tanzen",
+    title: "Kindertanzen",
+    desc: "Verbessert die Motorik, stärkt das Selbstbewusstsein und fördert das rhythmische Verständnis",
   },
   {
     src: kindertanzen2,
-    alt: "",
-    title: "",
-    desc: "",
+    alt: "Freude am Tanzen in der Gruppe",
+    title: "Freude an Musik und Bewegung",
+    desc: "Kreatives Tanzen für Kindergartenkinder",
   },
 ];
 const kinderturnenImages = [];
 const kunstradImages = [
   {
     src: kunstrad1,
-    alt: "",
-    title: "",
-    desc: "",
+    alt: "Zwei Fahrerinnen auf dem Kunstrad",
+    title: "Komplexe Figuren auf dem Rad",
+    desc: "... erfordern hohe Konzentration, Koordination und Gleichgewichtssinn",
   },
   {
     src: kunstrad2,
-    alt: "",
-    title: "",
-    desc: "",
+    alt: "Kunstradfigur",
+    title: "Wettkampfsport",
+    desc: "Mit den speziellen Hallenrädern sind komplexe Kunststücke möglich",
   },
 ];
 const radballImages = [
   {
     src: radballAnpfiff,
-    alt: "",
-    title: "",
-    desc: "",
+    alt: "Anstoß beim Radball",
+    title: "Anstoß",
+    desc: "Die Teams sind bereit für den Wettkampf",
   },
   {
     src: radballGenerationen,
@@ -79,13 +79,13 @@ const radballImages = [
   {
     src: radballMoritzUndTobi2,
     alt: "Stehen mit Radballrädern",
-    title: "Moritz und Tobi (U19)",
+    title: "Moritz und Tobias",
     desc: "Das Stehen ist mit den besonderen Rädern kein Problem",
   },
   {
     src: radballMoritzUndRemo,
-    alt: "",
-    title: "",
+    alt: "Moritz und Remo auf ihren Rädern",
+    title: "Moritz und Remo",
     desc: "",
   },
   {
@@ -116,9 +116,9 @@ const radballImages = [
 const reigenImages = [
   {
     src: reigen1,
-    alt: "",
-    title: "",
-    desc: "",
+    alt: "Einradfahrerinnen im Team",
+    title: "Spaß im Team",
+    desc: "Die Teams führen synchron verschiedene Figuren und Tricks auf Einrädern aus",
   },
   //   {
   //     src: reigen2,
@@ -134,9 +134,9 @@ const reigenImages = [
   //   },
   {
     src: reigen4,
-    alt: "",
-    title: "",
-    desc: "",
+    alt: "Einradfahrerinnen in der Gruppe",
+    title: "Teamwettkampf",
+    desc: "Einradfahren als Teamsport erfordert eine hohe Koordination zwischen den einzelnen Fahrer*innen",
   },
 ];
 
