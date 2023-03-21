@@ -9,7 +9,16 @@ export default function Impressum({ section, variant }) {
   return (
     <Tab.Container
       defaultActiveKey={
-        section === "Kindertanzen" ? "kindertanzen" : "kunstrad"
+        [
+          "Kunstrad",
+          "Reigen",
+          "Radball",
+          "Gymnastik",
+          "Kinderturnen",
+          "Kindertanzen",
+        ].includes(section)
+          ? section.toLowerCase()
+          : "kunstrad"
       }
     >
       <Row>
