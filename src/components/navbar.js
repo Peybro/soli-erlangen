@@ -58,6 +58,12 @@ export default function NavbarComponent() {
               >
                 Geschichte
               </Link>
+              <a
+                className="dropdown-item"
+                href="https://www.soli-erlangen.de/spiel/"
+              >
+                Spielberichtsbogen
+              </a>
               <NavDropdown.Divider />
               <a
                 className="dropdown-item"
