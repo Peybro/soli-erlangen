@@ -17,7 +17,7 @@ export default function Mininav() {
     return () => {
       document.removeEventListener("resize", getWindowWidth());
     };
-  }, [window.innerWidth]);
+  }, []);
 
   function getWindowWidth() {
     if (typeof window !== "undefined") {
