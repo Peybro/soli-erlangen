@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     siteUrl: "https://www.soli-erlangen.de/",
-    title: "soli-erlangen",
+    title: "Soli-Erlangen",
   },
   plugins: [
     "gatsby-plugin-sass",
