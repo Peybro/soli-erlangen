@@ -11,14 +11,21 @@ import kindertanzenLogo from "./../../static/stickmen/logo_kindertanzen_q.png";
 import Nav from "react-bootstrap/Nav";
 
 export default function Mininav() {
-  const [width, setWidth] = React.useState(window.innerWidth);
+  const [width, setWidth] = React.useState(undefined);
   React.useEffect(() => {
-    function handleResize() {
-      setWidth(window.innerWidth);
-    }
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    document.addEventListener("resize", getWindowWidth());
+    return () => {
+      document.removeEventListener("resize", getWindowWidth());
+    };
   }, [window.innerWidth]);
+
+  function getWindowWidth() {
+    if (typeof window !== "undefined") {
+      setWidth(window.innerWidth);
+    } else {
+      setWidth(undefined);
+    }
+  }
 
   const sports = [
     {
