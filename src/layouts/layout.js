@@ -3,7 +3,6 @@ import "../styles/bootstrap.scss";
 import { Link } from "gatsby";
 import Helmet from "react-helmet";
 
-import Offcanvas from "react-bootstrap/Offcanvas";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 
