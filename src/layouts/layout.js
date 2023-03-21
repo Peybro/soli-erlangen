@@ -30,7 +30,6 @@ export default function Layout({
     omaps: true,
   });
   const [showCookieInput, setShowCookieInput] = React.useState(false);
-  const [saveCookieForDays, setSaveCookieForDays] = React.useState(30);
   const [isFluid, setIsFluid] = React.useState(false);
   const [bannerSettings, setBannerSettings] = React.useState({
     enabled: true,
@@ -40,7 +39,7 @@ export default function Layout({
   });
   const [showBanner, setShowBanner] = React.useState(true);
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     const settingsCookie = Cookies.get("settings");
     if (settingsCookie) {
       setSettings(JSON.parse(settingsCookie));
@@ -71,8 +70,25 @@ export default function Layout({
 
   function handleCookieSettings() {
     Cookies.set("settings", JSON.stringify(settings), {
-      expires: saveCookieForDays >= 0 ? parseInt(saveCookieForDays) : 0,
+      expires: 365,
     });
+    if (pageTitle === "index" || pageTitle === "kalender") onSettingsChange();
+    setShowCookieAlert(false);
+  }
+
+  function handleOnlyEssentialSettings() {
+    Cookies.set(
+      "settings",
+      JSON.stringify({
+        gcal: false,
+        maps: false,
+        gmaps: false,
+        omaps: true,
+      }),
+      {
+        expires: 31,
+      }
+    );
     if (pageTitle === "index" || pageTitle === "kalender") onSettingsChange();
     setShowCookieAlert(false);
   }
@@ -138,7 +154,7 @@ export default function Layout({
       <footer className="bg-success text-light p-3">
         <div className="container">
           <div className="mb-4">
-            <h3 className="heading">Hier findet ihr uns:</h3>
+            <h3 className="heading">Hier findest du uns:</h3>
             <Location
               section={pageTitle}
               variant={
@@ -149,20 +165,24 @@ export default function Layout({
 
           <hr />
 
-          <small>
-            Rad und Kraftfahrerverein Solidarität Erlangen 1903 e. V.
-          </small>
-          <div className="float-end">
-            <Link className="text-light" to="/impressum">
-              Impressum
-            </Link>{" "}
-            <span
-              className="text-light text-decoration-underline"
-              style={{ cursor: "pointer" }}
-              onClick={() => setShowCookieAlert(true)}
-            >
-              Einstellungen
-            </span>
+          <div className="row">
+            <div className="col-sm-12 col-md">
+              <p className="fs-6">
+                Rad- und Kraftfahrerverein Solidarität Erlangen 1903 e. V.
+              </p>
+            </div>
+            <div className="col-auto">
+              <Link className="text-light" to="/impressum">
+                Impressum
+              </Link>{" "}
+              <span
+                className="text-light text-decoration-underline"
+                style={{ cursor: "pointer" }}
+                onClick={() => setShowCookieAlert(true)}
+              >
+                Einstellungen
+              </span>
+            </div>
           </div>
         </div>
 
@@ -182,6 +202,7 @@ export default function Layout({
             }}
           >
             <div
+              className="p-4"
               style={{
                 position: "fixed",
                 bottom: 0,
@@ -193,11 +214,8 @@ export default function Layout({
                 pointerEvents: "all",
               }}
             >
-              <h2>
-                Diese Seite nutzt{" "}
-                <small className="text-muted">(ein paar)</small> Cookies!
-              </h2>
-              <div className="p-4">
+              <h2>Diese Seite nutzt Cookies!</h2>
+              <div>
                 <img
                   className="d-none d-md-block"
                   style={{
@@ -253,26 +271,19 @@ export default function Layout({
                     />
                   </div>
                   <button
-                    className="btn btn-primary mt-2"
+                    className="btn btn-outline-primary mt-2 me-1"
                     type="submit"
                     onClick={() => handleCookieSettings()}
                   >
                     Speichern
-                  </button>{" "}
-                  <small>
-                    (setzt einen Cookie für {saveCookieForDays} Tag
-                    {saveCookieForDays > 1 ? "e" : ""})
-                  </small>
-                  {showCookieInput && (
-                    <Form.Control
-                      type="number"
-                      className="mt-1"
-                      min="0"
-                      max="365"
-                      value={saveCookieForDays}
-                      onInput={(e) => setSaveCookieForDays(e.target.value)}
-                    />
-                  )}
+                  </button>
+                  <button
+                    className="btn btn-primary mt-2"
+                    type="submit"
+                    onClick={() => handleOnlyEssentialSettings()}
+                  >
+                    Nur essentielle
+                  </button>
                 </Form>
               </div>
             </div>

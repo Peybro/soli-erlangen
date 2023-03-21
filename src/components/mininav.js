@@ -11,6 +11,15 @@ import kindertanzenLogo from "./../../static/stickmen/logo_kindertanzen_q.png";
 import Nav from "react-bootstrap/Nav";
 
 export default function Mininav() {
+  const [width, setWidth] = React.useState(window.innerWidth);
+  React.useEffect(() => {
+    function handleResize() {
+      setWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [window.innerWidth]);
+
   const sports = [
     {
       name: "Kunstrad",
@@ -52,14 +61,8 @@ export default function Mininav() {
             >
               <img
                 src={sport.src}
-                className="d-block d-sm-none"
-                width="20"
-                alt="Sports Icon"
-              />
-              <img
-                src={sport.src}
-                className="d-none d-sm-inline"
-                width="30"
+                className="d-inline"
+                width={width <= 350 ? 20 : width < 384 ? "25" : "30"}
                 alt="Sports Icon"
               />
               <span className="d-none d-lg-inline">{sport.name}</span>
