@@ -13,7 +13,7 @@ export default function Impressum({ section, variant }) {
       }
     >
       <Row>
-        <Col>
+        <Col md={3}>
           <Nav variant="pills" className="flex-column">
             {[
               "Kunstrad",
@@ -32,7 +32,7 @@ export default function Impressum({ section, variant }) {
           </Nav>
         </Col>
 
-        <div className="bg-dark py-2 px-4 rounded-4">
+        <div className="col bg-dark p-4 rounded-4">
           <Tab.Content>
             {["Kunstrad", "Reigen", "Radball", "Gymnastik", "Kinderturnen"].map(
               (sport, i) => (
