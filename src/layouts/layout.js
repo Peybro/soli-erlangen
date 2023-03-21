@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/bootstrap.scss";
 import { Link } from "gatsby";
 import Helmet from "react-helmet";
@@ -21,40 +21,47 @@ export default function Layout({
   children,
   onSettingsChange,
 }) {
-  const [showCookieAlert, setShowCookieAlert] = React.useState(true);
+  const [showCookieAlert, setShowCookieAlert] = useState(true);
 
-  const [gcal, setGcal] = React.useState(false);
-  const [maps, setMaps] = React.useState(false);
-  const [gmaps, setGmaps] = React.useState(false);
-  const [omaps, setOmaps] = React.useState(true);
-
-  const [settings, setSettings] = React.useState({
+  const [cookieSettings, setCookieSettings] = useState({
     gcal: false,
     maps: false,
     gmaps: false,
     omaps: true,
   });
-  const [showCookieInput, setShowCookieInput] = React.useState(false);
-  const [isFluid, setIsFluid] = React.useState(false);
-  const [bannerSettings, setBannerSettings] = React.useState({
+
+  const [gcal, setGcal] = useState(false);
+  const [maps, setMaps] = useState(false);
+  const [gmaps, setGmaps] = useState(false);
+  const [omaps, setOmaps] = useState(true);
+
+  const [showCookieInput, setShowCookieInput] = useState(false);
+  const [isFluid, setIsFluid] = useState(false);
+  const [bannerSettings, setBannerSettings] = useState({
     enabled: true,
     title: "",
     description: "",
     bgColor: "",
   });
-  const [showBanner, setShowBanner] = React.useState(true);
+  const [showBanner, setShowBanner] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const settingsCookie = Cookies.get("settings");
     if (settingsCookie) {
-      setSettings(JSON.parse(settingsCookie));
+      const tempSettings = JSON.parse(settingsCookie);
+      setGcal(tempSettings.gcal);
+      setMaps(tempSettings.maps);
+      setGmaps(tempSettings.gmaps);
+      setOmaps(tempSettings.omaps);
+      setCookieSettings(JSON.parse(settingsCookie));
+
       setShowCookieAlert(false);
     } else {
       setShowCookieAlert(true);
     }
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     listenForUpdates();
     getIsFluid();
 
@@ -73,43 +80,36 @@ export default function Layout({
     }
   }
 
-  function handleCookieSettings() {
-    setSettings({
-      gcal: gcal,
-      maps: maps,
-      gmaps: gmaps,
-      omaps: omaps,
-    });
+  function handleCookieSettings(useTheseSettings = false, expires = 365) {
+    const tempSettings =
+      useTheseSettings !== false
+        ? useTheseSettings
+        : {
+            gcal: gcal,
+            maps: maps,
+            gmaps: gmaps,
+            omaps: omaps,
+          };
 
-    Cookies.set("settings", JSON.stringify(settings), {
-      expires: 365,
+    setGcal(tempSettings.gcal);
+    setMaps(tempSettings.maps);
+    setGmaps(tempSettings.gmaps);
+    setOmaps(tempSettings.omaps);
+    setCookieSettings(tempSettings);
+
+    Cookies.set("settings", JSON.stringify(tempSettings), {
+      expires: expires,
     });
     if (pageTitle === "index" || pageTitle === "kalender") onSettingsChange();
     setShowCookieAlert(false);
   }
 
   function handleOnlyEssentialSettings() {
-    setSettings({
-      gcal: false,
-      maps: false,
-      gmaps: false,
-      omaps: true,
-    });
-
-    Cookies.set(
-      "settings",
-      JSON.stringify({
-        gcal: false,
-        maps: false,
-        gmaps: false,
-        omaps: true,
-      }),
-      {
-        expires: 31,
-      }
+    // TODO 🤮
+    handleCookieSettings(
+      { gcal: false, maps: false, gmaps: false, omaps: true },
+      31
     );
-    if (pageTitle === "index" || pageTitle === "kalender") onSettingsChange();
-    setShowCookieAlert(false);
   }
 
   function listenForUpdates() {
@@ -177,7 +177,11 @@ export default function Layout({
             <Location
               section={pageTitle}
               variant={
-                settings.maps ? (settings.gmaps ? "gmaps" : "omaps") : "nomaps"
+                cookieSettings.maps
+                  ? cookieSettings.gmaps
+                    ? "gmaps"
+                    : "omaps"
+                  : "nomaps"
               }
             />
           </div>
