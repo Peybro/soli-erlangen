@@ -22,6 +22,12 @@ export default function Layout({
   onSettingsChange,
 }) {
   const [showCookieAlert, setShowCookieAlert] = React.useState(true);
+
+  const [gcal, setGcal] = React.useState(false);
+  const [maps, setMaps] = React.useState(false);
+  const [gmaps, setGmaps] = React.useState(false);
+  const [omaps, setOmaps] = React.useState(true);
+
   const [settings, setSettings] = React.useState({
     gcal: false,
     maps: false,
@@ -68,6 +74,13 @@ export default function Layout({
   }
 
   function handleCookieSettings() {
+    setSettings({
+      gcal: gcal,
+      maps: maps,
+      gmaps: gmaps,
+      omaps: omaps,
+    });
+
     Cookies.set("settings", JSON.stringify(settings), {
       expires: 365,
     });
@@ -76,6 +89,13 @@ export default function Layout({
   }
 
   function handleOnlyEssentialSettings() {
+    setSettings({
+      gcal: false,
+      maps: false,
+      gmaps: false,
+      omaps: true,
+    });
+
     Cookies.set(
       "settings",
       JSON.stringify({
@@ -233,17 +253,13 @@ export default function Layout({
                     type="checkbox"
                     label="Google Kalender"
                     checked={settings.gcal}
-                    onChange={() =>
-                      setSettings({ ...settings, gcal: !settings.gcal })
-                    }
+                    onChange={() => setGcal(!gcal)}
                   />
                   <Form.Check
                     type="checkbox"
                     label="Maps"
                     checked={settings.maps}
-                    onChange={() =>
-                      setSettings({ ...settings, maps: !settings.maps })
-                    }
+                    onChange={() => setMaps(!maps)}
                   />
                   <div>
                     <Form.Check
@@ -253,9 +269,10 @@ export default function Layout({
                       label="Google Maps"
                       checked={settings.gmaps}
                       disabled={!settings.maps}
-                      onChange={() =>
-                        setSettings({ ...settings, gmaps: true, omaps: false })
-                      }
+                      onChange={() => {
+                        setGmaps(true);
+                        setOmaps(false);
+                      }}
                     />
                     <Form.Check
                       type="radio"
@@ -264,9 +281,10 @@ export default function Layout({
                       label="Open Maps"
                       checked={settings.omaps}
                       disabled={!settings.maps}
-                      onChange={() =>
-                        setSettings({ ...settings, gmaps: false, omaps: true })
-                      }
+                      onChange={() => {
+                        setGmaps(false);
+                        setOmaps(true);
+                      }}
                     />
                   </div>
                   <button
