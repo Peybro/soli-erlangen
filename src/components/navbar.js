@@ -16,7 +16,7 @@ export default function NavbarComponent() {
       variant="dark"
       sticky="top"
     >
-      <Container fluid>
+      <Container>
         <Link className="navbar-brand" to="/">
           <img
             src={soliLogo}
@@ -29,6 +29,13 @@ export default function NavbarComponent() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto">
+            <Link
+              className="nav-link"
+              to="/verein/zeitung"
+              activeClassName="active"
+            >
+              Zeitung
+            </Link>
             <NavDropdown title="Verein">
               <Link
                 className="dropdown-item"
@@ -37,13 +44,13 @@ export default function NavbarComponent() {
               >
                 Vorstand & Trainer
               </Link>
-              <Link
+              {/* <Link
                 className="dropdown-item"
                 to="/verein/zeitung"
                 activeClassName="active"
               >
                 Vereinsblatt
-              </Link>
+              </Link> */}
               <Link
                 className="dropdown-item"
                 to="/verein/geschichte"
@@ -62,7 +69,14 @@ export default function NavbarComponent() {
             <Link className="nav-link" to="/kalender" activeClassName="active">
               Termine
             </Link>
-            <NavDropdown title="Unsere Sportarten">
+            <a
+              className="nav-link"
+              href="https://de-de.facebook.com/RalfHaeusinger/"
+            >
+              <i className="bi-facebook" /> Aktuelles
+            </a>
+
+            {/* <NavDropdown title="Unsere Sportarten">
               <Link
                 className="dropdown-item"
                 to="/sportarten/kunstrad"
@@ -105,7 +119,7 @@ export default function NavbarComponent() {
               >
                 Kindertanzen
               </Link>
-            </NavDropdown>
+            </NavDropdown> */}
           </Nav>
         </Navbar.Collapse>
       </Container>

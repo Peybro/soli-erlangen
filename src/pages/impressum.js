@@ -8,8 +8,10 @@ export default function Impressum() {
 
       <h3>Angaben gemäß § 5 TMG:</h3>
 
-      <div class="verein mt-4">
-        <p class="fw-bold">Solidarität Erlangen e.V.</p>
+      <div className="verein mt-4">
+        <p className="fw-bold">
+          Rad- und Kraftfahrerverein Solidarität Erlangen 1903 e.V.
+        </p>
         Fuchsweg 2<br />
         91074 Herzogenaurach
         <br />
@@ -22,7 +24,7 @@ export default function Impressum() {
         Website: https://www.soli-erlangen.de/
       </div>
 
-      <div class="vertretung mt-4">
+      <div className="vertretung mt-4">
         <h5>Vertreten durch:</h5>
         Ralf Häusinger
         <br />
@@ -32,7 +34,7 @@ export default function Impressum() {
         Deutschland
       </div>
 
-      <div class="verantwortlich mt-4">
+      <div className="verantwortlich mt-4">
         <h5>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</h5>
         Ralf Häusinger
         <br />
@@ -42,14 +44,14 @@ export default function Impressum() {
         Deutschland
       </div>
 
-      <div class="webmaster mt-4">
+      <div className="webmaster mt-4">
         <h5>Webmaster:</h5>
         Thomas Kretschmann
         <br />
         t.kretschmann@t-online.de
       </div>
 
-      <div class="haftung mt-4">
+      <div className="haftung mt-4">
         <h5>Haftungsausschluss (Disclaimer)</h5>
         <ol>
           <li>Haftung für Inhalte</li>

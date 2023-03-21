@@ -136,14 +136,19 @@ export default function Layout({
       </main>
 
       <footer className="bg-success text-light p-3">
-        <Location
-          section={pageTitle}
-          variant={
-            settings.maps ? (settings.gmaps ? "gmaps" : "omaps") : "nomaps"
-          }
-        />
-        <hr />
-        <div className="mt-4 w-100">
+        <div className="container">
+          <div className="mb-4">
+            <h3 className="heading">Hier findet ihr uns:</h3>
+            <Location
+              section={pageTitle}
+              variant={
+                settings.maps ? (settings.gmaps ? "gmaps" : "omaps") : "nomaps"
+              }
+            />
+          </div>
+
+          <hr />
+
           <small>
             Rad und Kraftfahrerverein Solidarität Erlangen 1903 e. V.
           </small>
@@ -160,99 +165,119 @@ export default function Layout({
             </span>
           </div>
         </div>
-        <Offcanvas
-          show={showCookieAlert}
-          placement={"bottom"}
-          scroll={true}
-          // onHide={() => handleCloseCookieAlert()}
-        >
-          <Offcanvas.Header>
-            <Offcanvas.Title>
-              Diese Seite nutzt Cookies!{" "}
-              <small className="text-muted">
-                (... wenn du sie nicht aus lässt 😉)
-              </small>
-            </Offcanvas.Title>
-          </Offcanvas.Header>
-          <Offcanvas.Body>
-            <img
-              className="d-none d-md-block"
+
+        {showCookieAlert && (
+          <div
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              color: "black",
+              backgroundColor: "transparent",
+              width: "100vw",
+              height: "100vh",
+              zIndex: 9999,
+              pointerEvents: "none",
+              cursor: "not-allowed",
+            }}
+          >
+            <div
               style={{
-                width: "30vw",
-                position: "absolute",
-                right: "50px",
-                bottom: "20px",
-                zIndex: -5,
+                position: "fixed",
+                bottom: 0,
+                left: 0,
+                backgroundColor: "white",
+                width: "100%",
+                borderTop: "1px solid #333",
+                zIndex: 10000,
+                pointerEvents: "all",
               }}
-              src="https://www.freepngimg.com/download/cookie/10-2-cookie-png-file.png"
-              alt="Cookies"
-              onClick={() => setShowCookieInput(!showCookieInput)}
-            />
-            <Form onSubmit={(e) => e.preventDefault()}>
-              <Form.Check
-                type="checkbox"
-                label="Google Kalender"
-                checked={settings.gcal}
-                onChange={() =>
-                  setSettings({ ...settings, gcal: !settings.gcal })
-                }
-              />
-              <Form.Check
-                type="checkbox"
-                label="Maps"
-                checked={settings.maps}
-                onChange={() =>
-                  setSettings({ ...settings, maps: !settings.maps })
-                }
-              />
-              <div>
-                <Form.Check
-                  type="radio"
-                  inline
-                  name="mapsRadio"
-                  label="Google Maps"
-                  checked={settings.gmaps}
-                  disabled={!settings.maps}
-                  onChange={() =>
-                    setSettings({ ...settings, gmaps: true, omaps: false })
-                  }
+            >
+              <h2>
+                Diese Seite nutzt{" "}
+                <small className="text-muted">(ein paar)</small> Cookies!
+              </h2>
+              <div className="p-4">
+                <img
+                  className="d-none d-md-block"
+                  style={{
+                    width: "30vw",
+                    position: "absolute",
+                    right: "50px",
+                    bottom: "20px",
+                    zIndex: 10001,
+                  }}
+                  src="https://www.freepngimg.com/download/cookie/10-2-cookie-png-file.png"
+                  alt="Cookies"
+                  onClick={() => setShowCookieInput(!showCookieInput)}
                 />
-                <Form.Check
-                  type="radio"
-                  inline
-                  name="mapsRadio"
-                  label="Open Maps"
-                  checked={settings.omaps}
-                  disabled={!settings.maps}
-                  onChange={() =>
-                    setSettings({ ...settings, gmaps: false, omaps: true })
-                  }
-                />
+                <Form onSubmit={(e) => e.preventDefault()}>
+                  <Form.Check
+                    type="checkbox"
+                    label="Google Kalender"
+                    checked={settings.gcal}
+                    onChange={() =>
+                      setSettings({ ...settings, gcal: !settings.gcal })
+                    }
+                  />
+                  <Form.Check
+                    type="checkbox"
+                    label="Maps"
+                    checked={settings.maps}
+                    onChange={() =>
+                      setSettings({ ...settings, maps: !settings.maps })
+                    }
+                  />
+                  <div>
+                    <Form.Check
+                      type="radio"
+                      inline
+                      name="mapsRadio"
+                      label="Google Maps"
+                      checked={settings.gmaps}
+                      disabled={!settings.maps}
+                      onChange={() =>
+                        setSettings({ ...settings, gmaps: true, omaps: false })
+                      }
+                    />
+                    <Form.Check
+                      type="radio"
+                      inline
+                      name="mapsRadio"
+                      label="Open Maps"
+                      checked={settings.omaps}
+                      disabled={!settings.maps}
+                      onChange={() =>
+                        setSettings({ ...settings, gmaps: false, omaps: true })
+                      }
+                    />
+                  </div>
+                  <button
+                    className="btn btn-primary mt-2"
+                    type="submit"
+                    onClick={() => handleCookieSettings()}
+                  >
+                    Speichern
+                  </button>{" "}
+                  <small>
+                    (setzt einen Cookie für {saveCookieForDays} Tag
+                    {saveCookieForDays > 1 ? "e" : ""})
+                  </small>
+                  {showCookieInput && (
+                    <Form.Control
+                      type="number"
+                      className="mt-1"
+                      min="0"
+                      max="365"
+                      value={saveCookieForDays}
+                      onInput={(e) => setSaveCookieForDays(e.target.value)}
+                    />
+                  )}
+                </Form>
               </div>
-              <button
-                className="btn btn-primary mt-2"
-                type="submit"
-                onClick={() => handleCookieSettings()}
-              >
-                Speichern
-              </button>{" "}
-              <small>
-                (setzt einen Cookie für {saveCookieForDays} Tag
-                {saveCookieForDays > 1 ? "e" : ""})
-              </small>
-              {showCookieInput && (
-                <Form.Control
-                  type="number"
-                  className="mt-1"
-                  min="0"
-                  max="365"
-                  value={saveCookieForDays}
-                  onInput={(e) => setSaveCookieForDays(e.target.value)}
-                />
-              )}
-            </Form>
-          </Offcanvas.Body>
-        </Offcanvas>
+            </div>
+          </div>
+        )}
       </footer>
     </div>
   );

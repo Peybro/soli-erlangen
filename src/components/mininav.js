@@ -50,7 +50,18 @@ export default function Mininav() {
               )}`}
               activeClassName="active"
             >
-              <img src={sport.src} width="30" alt="Sports Icon" />
+              <img
+                src={sport.src}
+                className="d-block d-sm-none"
+                width="20"
+                alt="Sports Icon"
+              />
+              <img
+                src={sport.src}
+                className="d-none d-sm-inline"
+                width="30"
+                alt="Sports Icon"
+              />
               <span className="d-none d-lg-inline">{sport.name}</span>
             </Link>
           </Nav.Item>
