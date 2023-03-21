@@ -252,13 +252,13 @@ export default function Layout({
                   <Form.Check
                     type="checkbox"
                     label="Google Kalender"
-                    checked={settings.gcal}
+                    checked={gcal}
                     onChange={() => setGcal(!gcal)}
                   />
                   <Form.Check
                     type="checkbox"
                     label="Maps"
-                    checked={settings.maps}
+                    checked={maps}
                     onChange={() => setMaps(!maps)}
                   />
                   <div>
@@ -267,8 +267,8 @@ export default function Layout({
                       inline
                       name="mapsRadio"
                       label="Google Maps"
-                      checked={settings.gmaps}
-                      disabled={!settings.maps}
+                      checked={gmaps}
+                      disabled={!maps}
                       onChange={() => {
                         setGmaps(true);
                         setOmaps(false);
@@ -279,8 +279,8 @@ export default function Layout({
                       inline
                       name="mapsRadio"
                       label="Open Maps"
-                      checked={settings.omaps}
-                      disabled={!settings.maps}
+                      checked={omaps}
+                      disabled={!maps}
                       onChange={() => {
                         setGmaps(false);
                         setOmaps(true);
